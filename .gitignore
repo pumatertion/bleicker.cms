@@ -1,0 +1,3 @@
+/vendor
+/db.sqlite
+Secrets.local.php
