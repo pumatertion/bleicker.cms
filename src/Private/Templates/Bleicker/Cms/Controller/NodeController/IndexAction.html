@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-fooo
-</body>
-</html>
+<f:layout name="default" />
+
+<f:section name="docTitle">
+	{title}
+</f:section>
+
+<f:section name="docBody">
+	<f:render partial="title" arguments="{_all}"/>
+</f:section>
