@@ -1,3 +1,14 @@
 /vendor
 /db.sqlite
 Secrets.local.php
+!/cache
+/cache/*
+!/cache/routing
+/cache/routing/*
+!/cache/routing/.gitkeep
+!/cache/typo3.fluid
+/cache/typo3.fluid/*
+!/cache/typo3.fluid/.gitkeep
+!/cache/doctrine
+/cache/doctrine/*
+!/cache/doctrine/.
