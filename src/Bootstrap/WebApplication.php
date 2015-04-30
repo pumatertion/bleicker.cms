@@ -62,7 +62,7 @@ ObjectManager::register(AuthenticationManagerInterface::class, $authenticationMa
 /**
  * Register router
  */
-$router = Router::getInstance(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'route.cache.php', Context::isProduction() ? FALSE : TRUE);
+$router = Router::getInstance(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'routing' . DIRECTORY_SEPARATOR . 'route.cache.php', Context::isProduction() ? FALSE : TRUE);
 ObjectManager::register(RouterInterface::class, $router);
 
 /**
