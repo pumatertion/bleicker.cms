@@ -1,6 +1,5 @@
 <?php
 
-use Bleicker\Cms\Controller\Frontend\NodeController as FrontendNodeController;
 use Bleicker\Cms\Controller\NodeController;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Routing\ControllerRouteData;
@@ -10,5 +9,4 @@ use Bleicker\Routing\RouterInterface;
 $router = ObjectManager::get(RouterInterface::class);
 $router
 	->addRoute('/manager', 'get', new ControllerRouteData(NodeController::class, 'indexAction'))
-	->addRoute('/manager/{node}', 'get', new ControllerRouteData(NodeController::class, 'showAction'))
-	->addRoute('/{node}', 'get', new ControllerRouteData(FrontendNodeController::class, 'showAction'));
+	->addRoute('/manager/{node}', 'get', new ControllerRouteData(NodeController::class, 'showAction'));
