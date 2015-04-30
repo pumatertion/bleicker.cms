@@ -15,6 +15,7 @@ class NodeController extends AbstractController {
 	 * @return string
 	 */
 	public function indexAction() {
+		return $this->view->render();
 	}
 
 	/**
