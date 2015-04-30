@@ -8,10 +8,14 @@
 	<link rel="stylesheet" media="screen" href="Public/Styles/Site.css"/>
 </head>
 <body>
-<div class="container">
-	<div class="starter-template">
-		<f:render section="docBody"/>
-	</div>
+
+<f:render section="navigation" optional="true"/>
+
+<div class="container-fluid">
+	<f:render section="docBody"/>
 </div>
+
+<f:render section="footer" optional="true"/>
+
 </body>
 </html>

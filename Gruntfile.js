@@ -2,13 +2,7 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-		// Metadata.
 		pkg: grunt.file.readJSON('package.json'),
-		banner: '/*! <%= pkg.title || pkg.name %> v<%= pkg.version %> ' +
-			'<%= pkg.homepage ? "(" + pkg.homepage + ")\\n" : "" %>' +
-			' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> <<%= pkg.author.email %>> (<%= pkg.author.url %>) \n' +
-			' */\n',
-
 		sass: {
 			development: {
 				options: {
@@ -20,7 +14,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-
 		watch: {
 			sass_files_changed: {
 				files: [
@@ -41,17 +34,27 @@ module.exports = function(grunt) {
 					interrupt: false
 				}
 			}
+		},
+		concat: {
+			options: {
+				separator: ';'
+			},
+			dist: {
+				src: [
+					'bower_components/jquery/dist/jquery.js',
+					'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+					'src/Private/JavaScript/Cms.js'
+				],
+				dest: 'src/Public/JavaScript/Built.js'
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-prettify');
 	grunt.loadNpmTasks('grunt-notify');
-
-	// Default task.
 	grunt.registerTask('default', ['build']);
-
-	// Build task.
 	grunt.registerTask('build', ['sass']);
 };
