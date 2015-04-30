@@ -25,7 +25,6 @@ use Bleicker\Token\TokenManager;
 use Bleicker\Token\TokenManagerInterface;
 
 include __DIR__ . '/../../vendor/autoload.php';
-include __DIR__ . '/../Configuration/Essentials/Constants.php';
 include __DIR__ . '/../Configuration/Essentials/Secrets.php';
 
 /**
@@ -62,7 +61,7 @@ ObjectManager::register(AuthenticationManagerInterface::class, $authenticationMa
 /**
  * Register router
  */
-$router = Router::getInstance(ROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'routing' . DIRECTORY_SEPARATOR . 'route.cache.php', Context::isProduction() ? FALSE : TRUE);
+$router = Router::getInstance(__DIR__ . DIRECTORY_SEPARATOR. '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'routing' . DIRECTORY_SEPARATOR . 'route.cache.php', Context::isProduction() ? FALSE : TRUE);
 ObjectManager::register(RouterInterface::class, $router);
 
 /**

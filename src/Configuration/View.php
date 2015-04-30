@@ -2,6 +2,6 @@
 
 use Bleicker\Registry\Registry;
 
-Registry::set('typo3.fluid.templateRootPaths.test', realpath(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Private' . DIRECTORY_SEPARATOR . 'Templates');
-Registry::set('typo3.fluid.layoutRootPaths.test', realpath(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Private' . DIRECTORY_SEPARATOR . 'Layouts');
-Registry::set('typo3.fluid.partialRootPaths.test', realpath(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Private' . DIRECTORY_SEPARATOR . 'Partials');
+Registry::set('typo3.fluid.templateRootPaths.cms', realpath(__DIR__ . '/../Private/Templates') . DIRECTORY_SEPARATOR);
+Registry::set('typo3.fluid.layoutRootPaths.cms', realpath(__DIR__ . '/../Private/Layouts') . DIRECTORY_SEPARATOR);
+Registry::set('typo3.fluid.partialRootPaths.cms', realpath(__DIR__ . '/../Private/Partials') . DIRECTORY_SEPARATOR);
