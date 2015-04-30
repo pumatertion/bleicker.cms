@@ -1,11 +1,14 @@
 <?php
 
-//use Bleicker\ObjectManager\ObjectManager;
-//use Bleicker\Routing\ControllerRouteData;
-//use Bleicker\Routing\RouterInterface;
-//
-//ObjectManager::get(RouterInterface::class)
-//	->addRoute('/', 'get', new ControllerRouteData(ExampleController::class, 'indexAction'))
-//	->addRoute('/example/add', 'get', new ControllerRouteData(ExampleController::class, 'addExampleAction'))
-//	->addRoute('/example/restricted/{accessKey}', 'get', new ControllerRouteData(ExampleController::class, 'accessRestrictedAction'))
-//	->addRoute('/example/{id}', 'get', new ControllerRouteData(ExampleController::class, 'getExampleAction'));
+use Bleicker\Cms\Controller\Frontend\NodeController as FrontendNodeController;
+use Bleicker\Cms\Controller\NodeController;
+use Bleicker\ObjectManager\ObjectManager;
+use Bleicker\Routing\ControllerRouteData;
+use Bleicker\Routing\RouterInterface;
+
+/** @var RouterInterface $router */
+$router = ObjectManager::get(RouterInterface::class);
+$router
+	->addRoute('/manager', 'get', new ControllerRouteData(NodeController::class, 'indexAction'))
+	->addRoute('/manager/{node}', 'get', new ControllerRouteData(NodeController::class, 'showAction'))
+	->addRoute('/{node}', 'get', new ControllerRouteData(FrontendNodeController::class, 'showAction'));
