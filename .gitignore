@@ -1,5 +1,9 @@
 /vendor
 /db.sqlite
+/bower_components
+/node_modules
+npm-debug.log
+.sass-cache
 Secrets.local.php
 !/cache
 /cache/*
