@@ -14,7 +14,8 @@ if (Context::isProduction()) {
 	ObjectManager::register(FluidCacheInterface::class, function () {
 		return new SimpleFileCache(realpath(__DIR__ . '/../../cache/typo3.fluid'));
 	});
-	ObjectManager::register(Cache::class, function () {
-		return new FilesystemCache(realpath(__DIR__ . '/../../cache/doctrine'));
-	});
 }
+
+ObjectManager::register(Cache::class, function () {
+	return new FilesystemCache(realpath(__DIR__ . '/../../cache/doctrine'));
+});
