@@ -9,8 +9,8 @@ use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache as CacheImplementation;
 use Doctrine\ORM\Tools\Setup;
 
-Registry::set('doctrine.schema.paths.nodes', __DIR__ . "/../../vendor/bleicker/nodes/src/Schema/Persistence");
-Registry::set('doctrine.schema.paths.nodestypes', __DIR__ . "/../../vendor/bleicker/nodestypes/src/Schema/Persistence");
+Registry::set('doctrine.schema.paths.nodes', realpath(__DIR__ . "/../../vendor/bleicker/nodes/src/Schema/Persistence"));
+Registry::set('doctrine.schema.paths.nodestypes', realpath(__DIR__ . "/../../vendor/bleicker/nodetypes/src/Schema/Persistence"));
 
 ObjectManager::register(Cache::class, function () {
 	return new CacheImplementation(realpath(__DIR__ . '/../../cache/Doctrine'));

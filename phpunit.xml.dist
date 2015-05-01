@@ -10,6 +10,11 @@
 		processIsolation="false"
 		backupGlobals="false"
 		syntaxCheck="true"
+		backupStaticAttributes="false"
+		forceCoversAnnotation="false"
+		stopOnError="false"
+		stopOnIncomplete="false"
+		stopOnSkipped="false"
 		>
 	<testsuites>
 		<testsuite name="Bleicker/Cms Unit">
