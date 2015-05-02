@@ -1,5 +1,46 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 
-body{
-	padding-top: $navbar-height;
+body {
+  padding-top: $navbar-height + $grid-gutter-width;
 }
+
+.nav {
+  .nav {
+    li {
+      padding-left: $grid-gutter-width/10;
+    }
+  }
+}
+
+.col-first {
+  font-size: 0.9em;
+  .nav {
+    &:first-child {
+      @extend .well;
+    }
+  }
+}
+
+.col-second {
+  header {
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+  .content-tree {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li{
+
+      @extend .well;
+      background-color: transparent;
+
+      &:hover{
+        @extend .well
+      }
+    }
+  }
+}
+

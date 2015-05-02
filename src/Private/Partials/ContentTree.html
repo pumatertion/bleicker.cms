@@ -1,0 +1,11 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
+<cms:menus.contentTree of="{of}">
+	<ul class="content-tree">
+		<li class="{f:if(condition:'{content.id}=={current.id}', then:' active', else:' inactive')}">
+			<f:render partial="{partial}" arguments="{node:content}"/>
+			<a href="/nodemanager/{content.id}" class="btn btn-default btn-xs">Edit</a>
+			<f:render partial="ContentTree" arguments="{of:content, current:current}"/>
+		</li>
+	</ul>
+</cms:menus.contentTree>

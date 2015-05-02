@@ -1,12 +1,21 @@
-<f:layout name="default" />
+<f:layout name="default"/>
 
 <f:section name="docTitle">
-	{title}
+	{page.title}
 </f:section>
 
 <f:section name="docBody">
-	<f:render partial="title" arguments="{_all}"/>
-	<f:render partial="pageTree" arguments="{of:node}"/>
+	<div class="row">
+		<div class="col-lg-2 col-first">
+			<f:render partial="pageTree" arguments="{of:root, current:page}"/>
+		</div>
+		<div class="col-lg-8 col-second">
+			<f:render partial="contentTree" arguments="{of:page, current:node}"/>
+		</div>
+		<div class="col-lg-2 col-third">
+			Options
+		</div>
+	</div>
 </f:section>
 
 <f:section name="navigation">
