@@ -1,7 +1,7 @@
 <f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
 
 <cms:menus.pageTree of="{of}">
-	<ul class="nav nav-pills nav-stacked">
+	<ul class="nav nav-pills">
 		<li class="{f:if(condition:'{of.id}=={current.id}', then:' active', else:' inactive')}">
 			<a href="/nodemanager/{of.id}">{of.title}</a>
 			<f:for each="{children}" as="child">

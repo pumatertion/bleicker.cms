@@ -4,21 +4,31 @@ body {
   padding-top: $navbar-height + $grid-gutter-width;
 }
 
-.nav {
+.col-first {
+  font-size: 0.8em;
   .nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    .nav {
+      li {
+        margin: 5px 0 0 0;
+        padding: 0 0 0 5px;
+      }
+    }
     li {
-      padding-left: $grid-gutter-width/10;
+      padding: 0;
+      a {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+      }
     }
   }
 }
 
-.col-first {
-  font-size: 0.9em;
-  .nav {
-    &:first-child {
-      @extend .well;
-    }
-  }
+.section-title {
+  text-transform: uppercase;
+  color: $gray-light;
 }
 
 .col-second {
@@ -32,12 +42,12 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    li{
+    li {
 
       @extend .well;
       background-color: transparent;
 
-      &:hover{
+      &:hover {
         @extend .well
       }
     }

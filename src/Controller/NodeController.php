@@ -29,15 +29,24 @@ class NodeController extends AbstractController {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function indexAction(){
+		$sites = $this->nodeService->findSites();
+		return $this->view->assign('sites', $sites)->assign('page', $sites->first())->render();
+	}
+
+	/**
 	 * @param string $node
 	 * @return string
 	 */
-	public function indexAction($node = NULL) {
+	public function showAction($node) {
 		/** @var NodeInterface $node */
 		$node = $this->nodeService->getNode($node);
 		$page = $this->nodeService->locatePage($node);
 		$root = $this->nodeService->locateRoot($node);
-		return $this->view->assign('node', $node)->assign('page', $page)->assign('root', $root)->render();
+		$sites = $this->nodeService->findSites();
+		return $this->view->assign('node', $node)->assign('page', $page)->assign('root', $root)->assign('sites', $sites)->render();
 	}
 
 	/**

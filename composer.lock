@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f66b84cb7fb567685b81fe1e68363d69",
+    "hash": "af034c01cdb9ebb04c39808c1bfe3a71",
     "packages": [
         {
             "name": "bleicker/authentication",
@@ -226,16 +226,16 @@
         },
         {
             "name": "bleicker/nodes",
-            "version": "0.6.1",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodes.git",
-                "reference": "67779fe972927bd93f76f36c9f4d43b4389af9f8"
+                "reference": "7d93fb5ff1649107814e4af015968715df604382"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodes/zipball/67779fe972927bd93f76f36c9f4d43b4389af9f8",
-                "reference": "67779fe972927bd93f76f36c9f4d43b4389af9f8",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodes/zipball/7d93fb5ff1649107814e4af015968715df604382",
+                "reference": "7d93fb5ff1649107814e4af015968715df604382",
                 "shasum": ""
             },
             "require": {
@@ -260,24 +260,24 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-02 17:06:54"
+            "time": "2015-05-02 18:56:48"
         },
         {
             "name": "bleicker/nodetypes",
-            "version": "0.4.1",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodetypes.git",
-                "reference": "0540e84dab5d975571365d2fb4282339d11c6531"
+                "reference": "493a81cb926baee2e61b93b53f5f457c8e8ca689"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/0540e84dab5d975571365d2fb4282339d11c6531",
-                "reference": "0540e84dab5d975571365d2fb4282339d11c6531",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/493a81cb926baee2e61b93b53f5f457c8e8ca689",
+                "reference": "493a81cb926baee2e61b93b53f5f457c8e8ca689",
                 "shasum": ""
             },
             "require": {
-                "bleicker/nodes": "0.6.*"
+                "bleicker/nodes": "0.7.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.6.*"
@@ -295,7 +295,7 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-02 17:11:41"
+            "time": "2015-05-02 18:47:30"
         },
         {
             "name": "bleicker/objectmanager",
