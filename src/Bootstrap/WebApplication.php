@@ -4,13 +4,10 @@ use Bleicker\Authentication\AuthenticationManager;
 use Bleicker\Authentication\AuthenticationManagerInterface;
 use Bleicker\Converter\Converter;
 use Bleicker\Converter\ConverterInterface;
-use Bleicker\Converter\TypeConverter\FloatTypeConverter;
-use Bleicker\Converter\TypeConverter\IntegerTypeConverter;
-use Bleicker\Converter\TypeConverter\StringTypeConverter;
 use Bleicker\FastRouter\Router;
 use Bleicker\Framework\Context\Context;
 use Bleicker\Framework\Http\Handler;
-use Bleicker\Framework\Http\Request;
+use Bleicker\Framework\Http\RequestFactory;
 use Bleicker\Framework\Security\AccessVoter;
 use Bleicker\Framework\Security\AccessVoterInterface;
 use Bleicker\ObjectManager\ObjectManager;
@@ -30,7 +27,7 @@ include __DIR__ . '/../Configuration/Essentials/Secrets.php';
 /**
  * Register the incoming main request
  */
-$request = Request::createFromGlobals();
+$request = RequestFactory::getInstance();
 ObjectManager::register(MainRequestInterface::class, $request);
 
 /**
@@ -82,17 +79,10 @@ ObjectManager::register(HandlerInterface::class, $requestHandler);
 $converter = new Converter();
 ObjectManager::register(ConverterInterface::class, $converter);
 
-$integerTypeConverter = new IntegerTypeConverter();
-Converter::register(IntegerTypeConverter::class, $integerTypeConverter);
-
-$floatTypeConverter = new FloatTypeConverter();
-Converter::register(FloatTypeConverter::class, $floatTypeConverter);
-
-$stringTypeConverter = new StringTypeConverter();
-Converter::register(StringTypeConverter::class, $stringTypeConverter);
-
 include __DIR__ . '/../Configuration/Cache.php';
 include __DIR__ . '/../Configuration/Routes.php';
 include __DIR__ . '/../Configuration/Persistence.php';
+include __DIR__ . '/../Configuration/TypeConverter.php';
 include __DIR__ . '/../Configuration/NodeService.php';
+include __DIR__ . '/../Configuration/NodeTypes.php';
 include __DIR__ . '/../Configuration/View.php';

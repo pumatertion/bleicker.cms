@@ -1,0 +1,27 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
+<f:layout name="default"/>
+
+<f:section name="docTitle">
+	{node.nodeType}
+</f:section>
+
+<f:section name="docBody">
+	<f:render partial="Forms/{node.nodeType->cms:format.directory()}"/>
+</f:section>
+
+<f:section name="navigation">
+	<f:render partial="navigation"/>
+</f:section>
+
+<f:section name="footer">
+	<f:render partial="javaScript"/>
+</f:section>
+
+<f:section name="styles">
+	<f:render partial="styles"/>
+</f:section>
+
+<f:section name="meta">
+	<f:render partial="meta"/>
+</f:section>

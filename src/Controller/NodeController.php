@@ -2,14 +2,15 @@
 
 namespace Bleicker\Cms\Controller;
 
+use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
-use Bleicker\Nodes\AbstractPageNode;
 use Bleicker\Nodes\NodeInterface;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\NodeTypes\Headline;
 use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Text;
 use Bleicker\ObjectManager\ObjectManager;
+use Bleicker\Registry\Registry;
 
 /**
  * Class NodeController
@@ -31,7 +32,7 @@ class NodeController extends AbstractController {
 	/**
 	 * @return string
 	 */
-	public function indexAction(){
+	public function indexAction() {
 		$sites = $this->nodeService->findSites();
 		return $this->view->assign('sites', $sites)->assign('page', $sites->first())->render();
 	}
@@ -47,6 +48,25 @@ class NodeController extends AbstractController {
 		$root = $this->nodeService->locateRoot($node);
 		$sites = $this->nodeService->findSites();
 		return $this->view->assign('node', $node)->assign('page', $page)->assign('root', $root)->assign('sites', $sites)->render();
+	}
+
+	/**
+	 * @param string $nodeType
+	 * @return string
+	 */
+	public function formAction($nodeType) {
+		$node = ObjectManager::get(Registry::get('nodetypes.' . $nodeType));
+		return $this->view->assign('node', $node)->render();
+	}
+
+	/**
+	 * @param string $nodeType
+	 * @return string
+	 */
+	public function createAction($nodeType) {
+		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.'.$nodeType));
+		$this->nodeService->add($node);
+		return $this->view->assign('node', $node)->render();
 	}
 
 	/**
