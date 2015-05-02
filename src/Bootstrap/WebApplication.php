@@ -94,4 +94,5 @@ Converter::register(StringTypeConverter::class, $stringTypeConverter);
 include __DIR__ . '/../Configuration/Cache.php';
 include __DIR__ . '/../Configuration/Routes.php';
 include __DIR__ . '/../Configuration/Persistence.php';
+include __DIR__ . '/../Configuration/NodeService.php';
 include __DIR__ . '/../Configuration/View.php';
