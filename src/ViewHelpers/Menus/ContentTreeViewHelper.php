@@ -35,39 +35,35 @@ class ContentTreeViewHelper extends AbstractViewHelper {
 	 * @api
 	 */
 	public function initializeArguments() {
-		$this->registerArgument('of', 'mixed', 'The start content', TRUE);
+		$this->registerArgument('of', 'mixed', 'The start content', FALSE);
 		$this->registerArgument('as', 'string', 'The name of children variable', FALSE, 'content');
 		$this->registerArgument('partial', 'string', 'The name of children variable', FALSE, 'partial');
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
 	public function render() {
-
-
-		/** @var NodeInterface $buildMenuOf */
-		$buildMenuOf = $this->arguments['of'];
-
+		/** @var NodeInterface $of */
+		$of = $this->arguments['of'];
 		/** @var string $childrenVariableName */
 		$childrenVariableName = $this->arguments['as'];
-
 		/** @var string $partialVariableName */
 		$partialVariableName = $this->arguments['partial'];
 
-		$children = $this->nodeService->getContent($buildMenuOf);
-
-		$result = '';
-
-		foreach ($children as $content) {
-			$partialPath = str_replace('\\', DIRECTORY_SEPARATOR, get_class($content));
-			$this->templateVariableContainer->add($childrenVariableName, $content);
-			$this->templateVariableContainer->add($partialVariableName, $partialPath);
-			$result .= $this->renderChildren();
-			$this->templateVariableContainer->remove($partialVariableName);
-			$this->templateVariableContainer->remove($childrenVariableName);
+		if ($of instanceof NodeInterface) {
+			$children = $this->nodeService->getContent($of);
+			$result = '';
+			foreach ($children as $content) {
+				$partialPath = str_replace('\\', DIRECTORY_SEPARATOR, get_class($content));
+				$this->templateVariableContainer->add($childrenVariableName, $content);
+				$this->templateVariableContainer->add($partialVariableName, $partialPath);
+				$result .= $this->renderChildren();
+				$this->templateVariableContainer->remove($partialVariableName);
+				$this->templateVariableContainer->remove($childrenVariableName);
+			}
+			return $result;
 		}
-
-		return $result;
+		return NULL;
 	}
 }

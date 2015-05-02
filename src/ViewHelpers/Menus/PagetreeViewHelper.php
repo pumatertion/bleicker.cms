@@ -35,26 +35,25 @@ class PageTreeViewHelper extends AbstractViewHelper {
 	 * @api
 	 */
 	public function initializeArguments() {
-		$this->registerArgument('of', 'mixed', 'The start page', TRUE);
+		$this->registerArgument('of', 'mixed', 'The start page', FALSE);
 		$this->registerArgument('as', 'string', 'The name of children variable', FALSE, 'children');
 	}
 
 	/**
-	 * @return string
+	 * @return string|NULL
 	 */
 	public function render() {
-		/** @var NodeInterface $buildMenuOf */
-		$buildMenuOf = $this->arguments['of'];
-
+		/** @var NodeInterface $of */
+		$of = $this->arguments['of'];
 		/** @var string $childrenVariableName */
 		$childrenVariableName = $this->arguments['as'];
-
-		$children = $this->nodeService->getPages($buildMenuOf);
-
-		$this->templateVariableContainer->add($childrenVariableName, $children);
-		$content = $this->renderChildren();
-		$this->templateVariableContainer->remove($childrenVariableName);
-
-		return $content;
+		if ($of instanceof NodeInterface) {
+			$children = $this->nodeService->getPages($of);
+			$this->templateVariableContainer->add($childrenVariableName, $children);
+			$content = $this->renderChildren();
+			$this->templateVariableContainer->remove($childrenVariableName);
+			return $content;
+		}
+		return NULL;
 	}
 }
