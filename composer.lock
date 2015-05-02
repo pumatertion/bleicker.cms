@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "089ddf8ca7e12d90a4a8aaa2334371dd",
+    "hash": "f66b84cb7fb567685b81fe1e68363d69",
     "packages": [
         {
             "name": "bleicker/authentication",
@@ -226,16 +226,16 @@
         },
         {
             "name": "bleicker/nodes",
-            "version": "0.5.1",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodes.git",
-                "reference": "043a73f0943fb7193aeef782760cef9ad46a3a49"
+                "reference": "67779fe972927bd93f76f36c9f4d43b4389af9f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodes/zipball/043a73f0943fb7193aeef782760cef9ad46a3a49",
-                "reference": "043a73f0943fb7193aeef782760cef9ad46a3a49",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodes/zipball/67779fe972927bd93f76f36c9f4d43b4389af9f8",
+                "reference": "67779fe972927bd93f76f36c9f4d43b4389af9f8",
                 "shasum": ""
             },
             "require": {
@@ -260,24 +260,24 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-01 13:31:30"
+            "time": "2015-05-02 17:06:54"
         },
         {
             "name": "bleicker/nodetypes",
-            "version": "0.2.2",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodetypes.git",
-                "reference": "1f6d9dfdee40e599cf2ca6f632e63ea1262e6afc"
+                "reference": "0540e84dab5d975571365d2fb4282339d11c6531"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/1f6d9dfdee40e599cf2ca6f632e63ea1262e6afc",
-                "reference": "1f6d9dfdee40e599cf2ca6f632e63ea1262e6afc",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/0540e84dab5d975571365d2fb4282339d11c6531",
+                "reference": "0540e84dab5d975571365d2fb4282339d11c6531",
                 "shasum": ""
             },
             "require": {
-                "bleicker/nodes": "0.5.*"
+                "bleicker/nodes": "0.6.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.6.*"
@@ -295,7 +295,7 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-01 13:35:38"
+            "time": "2015-05-02 17:11:41"
         },
         {
             "name": "bleicker/objectmanager",
@@ -1288,8 +1288,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:pumatertion/TYPO3.Fluid.git",
-                "reference": "022d51e4feb3fc0b368d35ba7ce893326afa2633"
+                "url": "https://github.com/NamelessCoder/TYPO3.Fluid.git",
+                "reference": "a957702aa45f7320fa69dcac299322e7cfc6f62d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NamelessCoder/TYPO3.Fluid/zipball/a957702aa45f7320fa69dcac299322e7cfc6f62d",
+                "reference": "a957702aa45f7320fa69dcac299322e7cfc6f62d",
+                "shasum": ""
             },
             "require-dev": {
                 "mikey179/vfsstream": "*",
@@ -1307,11 +1313,12 @@
                     "TYPO3\\Fluid\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "The TYPO3 Fluid template rendering engine",
-            "time": "2015-05-01 12:02:26"
+            "time": "2015-05-01 13:25:07"
         },
         {
             "name": "nikic/fast-route",
