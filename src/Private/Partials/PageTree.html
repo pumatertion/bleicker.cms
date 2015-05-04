@@ -1,12 +1,12 @@
 <f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
 
 <cms:menus.pageTree of="{of}">
-	<ul class="nav nav-pills">
+	<ol class="nav nav-pills">
 		<li class="{f:if(condition:'{of.id}=={current.id}', then:' active', else:' inactive')}">
 			<a href="/nodemanager/{of.id}">{of.title}</a>
 			<f:for each="{children}" as="child">
 				<f:render partial="PageTree" arguments="{of:child, current:current}"/>
 			</f:for>
 		</li>
-	</ul>
+	</ol>
 </cms:menus.pageTree>
