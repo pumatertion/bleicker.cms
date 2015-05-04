@@ -58,6 +58,32 @@ class NodeController extends AbstractController {
 	}
 
 	/**
+	 * @param $reference
+	 * @return void
+	 */
+	public function addWithReferenceAction($reference) {
+		$reference = $this->nodeService->get($reference);
+		$mode = $this->request->getContent('mode');
+		$nodeType = $this->request->getContent('nodeType');
+
+		/** @var NodeInterface $node */
+		$node = Converter::convert([], Registry::get('nodetypes.' . $nodeType . '.class'));
+
+		switch($mode){
+			case 'into':
+				$this->nodeService->addChild($node, $reference);
+				break;
+			case 'after':
+				$this->nodeService->addAfter($node, $reference);
+				break;
+			case 'before':
+				$this->nodeService->addBefore($node, $reference);
+				break;
+		}
+		$this->redirect('/nodemanager/'.$node->getId());
+	}
+
+	/**
 	 * @param string $node
 	 * @return void
 	 */

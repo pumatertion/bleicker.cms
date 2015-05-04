@@ -1,5 +1,6 @@
 <?php
 
+use Bleicker\Cms\TypeConverter\Node\PageTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\SiteTypeConverter;
 use Bleicker\Converter\Converter;
 use Bleicker\Converter\TypeConverter\FloatTypeConverter;
@@ -9,6 +10,7 @@ use Bleicker\Framework\Converter\JsonApplicationRequestConverter;
 use Bleicker\Framework\Converter\JsonApplicationRequestConverterInterface;
 use Bleicker\Framework\Converter\WellformedApplicationRequestConverter;
 use Bleicker\Framework\Converter\WellformedApplicationRequestConverterInterface;
+use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Site;
 
 $integerTypeConverter = new IntegerTypeConverter();
@@ -28,3 +30,6 @@ Converter::register(JsonApplicationRequestConverterInterface::class, $jsonReques
 
 $siteTypeConverter = new SiteTypeConverter();
 Converter::register(Site::class, $siteTypeConverter);
+
+$pageTypeConverter = new PageTypeConverter();
+Converter::register(Page::class, $pageTypeConverter);
