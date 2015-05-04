@@ -1,4 +1,6 @@
-<header>
+
+<header class="content container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
+	<a href="/nodemanager/{node.id}" class="options"></a>
 	<h1>{node.title}</h1>
 	<h2>{node.subtitle}</h2>
 </header>

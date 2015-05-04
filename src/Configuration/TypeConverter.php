@@ -1,5 +1,6 @@
 <?php
 
+use Bleicker\Cms\TypeConverter\Node\ColumnTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\HeadlineTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\MultiColumnTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\PageTypeConverter;
@@ -18,6 +19,7 @@ use Bleicker\NodeTypes\MultiColumn;
 use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Site;
 use Bleicker\NodeTypes\Text;
+use Doctrine\DBAL\Schema\Column;
 
 $integerTypeConverter = new IntegerTypeConverter();
 Converter::register(IntegerTypeConverter::class, $integerTypeConverter);
@@ -48,3 +50,6 @@ Converter::register(Text::class, $textTypeConverter);
 
 $multiColumnTypeConverter = new MultiColumnTypeConverter();
 Converter::register(MultiColumn::class, $multiColumnTypeConverter);
+
+$columnTypeConverter = new ColumnTypeConverter();
+Converter::register(Column::class, $columnTypeConverter);
