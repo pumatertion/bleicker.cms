@@ -59,7 +59,7 @@ class NodeController extends AbstractController {
 
 	/**
 	 * @param string $node
-	 * @return string
+	 * @return void
 	 */
 	public function updateAction($node) {
 		$node = $this->nodeService->get($node);
@@ -72,8 +72,23 @@ class NodeController extends AbstractController {
 	}
 
 	/**
+	 * @param string $node
+	 * @return void
+	 */
+	public function removeAction($node) {
+		$node = $this->nodeService->get($node);
+		$parentNode = $node->getParent();
+		$this->nodeService->remove($node);
+
+		if ($parentNode !== NULL) {
+			$this->redirect('/nodemanager/' . $parentNode);
+		}
+		$this->redirect('/nodemanager');
+	}
+
+	/**
 	 * @param string $nodeType
-	 * @return string
+	 * @return void
 	 */
 	public function createAction($nodeType) {
 		/** @var NodeInterface $node */
