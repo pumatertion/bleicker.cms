@@ -53,7 +53,7 @@ class NodeController extends AbstractController {
 	 * @return string
 	 */
 	public function addAction($nodeType) {
-		$node = ObjectManager::get(Registry::get('nodetypes.' . $nodeType));
+		$node = ObjectManager::get(Registry::get('nodetypes.' . $nodeType . '.class'));
 		return $this->view->assign('node', $node)->render();
 	}
 
@@ -92,7 +92,7 @@ class NodeController extends AbstractController {
 	 */
 	public function createAction($nodeType) {
 		/** @var NodeInterface $node */
-		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.' . $nodeType));
+		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.' . $nodeType . '.class'));
 		$this->nodeService->add($node);
 		$this->redirect('/nodemanager/' . $node->getId(), 303);
 	}
