@@ -5,15 +5,15 @@ namespace Bleicker\Cms\TypeConverter\Node;
 use Bleicker\Converter\TypeConverter\TypeConverterInterface;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\NodeServiceInterface;
-use Bleicker\NodeTypes\Site;
+use Bleicker\NodeTypes\Page;
 use Bleicker\ObjectManager\ObjectManager;
 
 /**
- * Class SiteTypeConverter
+ * Class PageTypeConverter
  *
  * @package Bleicker\Cms\TypeConverter\Node
  */
-class SiteTypeConverter implements TypeConverterInterface {
+class PageTypeConverter implements TypeConverterInterface {
 
 	/**
 	 * @var NodeServiceInterface
@@ -30,7 +30,7 @@ class SiteTypeConverter implements TypeConverterInterface {
 	 * @return boolean
 	 */
 	public static function canConvert($source = NULL, $targetType) {
-		if (is_array($source) && $targetType === Site::class) {
+		if (is_array($source) && $targetType === Page::class) {
 			return TRUE;
 		}
 		return FALSE;
@@ -38,7 +38,7 @@ class SiteTypeConverter implements TypeConverterInterface {
 
 	/**
 	 * @param array $source
-	 * @return Site
+	 * @return Page
 	 */
 	public function convert($source) {
 		if ($this->isUpdate($source)) {
@@ -76,10 +76,10 @@ class SiteTypeConverter implements TypeConverterInterface {
 	 * Returns a new site mapped with source arguments
 	 *
 	 * @param array $source
-	 * @return Site
+	 * @return Page
 	 */
 	protected function getNew(array $source) {
-		$node = new Site();
+		$node = new Page();
 		$node->setTitle(Arrays::getValueByPath($source, 'title') !== NULL ? : '');
 		return $node;
 	}
@@ -88,12 +88,12 @@ class SiteTypeConverter implements TypeConverterInterface {
 	 * Returns an updated site mapped with source arguments
 	 *
 	 * @param array $source
-	 * @return Site
+	 * @return Page
 	 */
 	protected function getUpdated(array $source) {
 		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
 		Arrays::unsetValueByPath($source, $this->getIdPath());
-		/** @var Site $node */
+		/** @var Page $node */
 		$node = $this->nodeService->get($nodeId);
 		$node->setTitle(Arrays::getValueByPath($source, 'title'));
 		return $node;
