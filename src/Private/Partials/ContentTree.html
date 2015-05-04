@@ -4,8 +4,7 @@
 	<ul class="content-tree">
 		<li class="{f:if(condition:'{content.id}=={current.id}', then:' active', else:' inactive')}">
 			<a href="/nodemanager/{content.id}" class="options"></a>
-			<f:render partial="{partial}" arguments="{node:content}"/>
-			<f:render partial="ContentTree" arguments="{of:content, current:current}"/>
+			<f:render partial="{partial}" arguments="{node:content, current:current}"/>
 		</li>
 	</ul>
 </cms:menus.contentTree>
