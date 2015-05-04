@@ -1,3 +1,5 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
 <f:layout name="default"/>
 
 <f:section name="docTitle">
@@ -14,11 +16,11 @@
 			</f:for>
 			<f:render partial="createSiteLink"/>
 		</div>
-		<div class="col-lg-8 col-second">
+		<div class="col-lg-7 col-second">
 			<f:render partial="contentTree" arguments="{of:page, current:node}"/>
 		</div>
-		<div class="col-lg-2 col-third">
-			Options
+		<div class="col-lg-3 col-third">
+			<f:render partial="Forms/{node.nodeType->cms:format.directory()}/Edit" arguments="{node:node}"/>
 		</div>
 	</div>
 </f:section>
