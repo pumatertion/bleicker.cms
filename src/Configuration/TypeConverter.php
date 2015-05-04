@@ -1,5 +1,6 @@
 <?php
 
+use Bleicker\Cms\TypeConverter\Node\HeadlineTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\PageTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\SiteTypeConverter;
 use Bleicker\Converter\Converter;
@@ -10,6 +11,7 @@ use Bleicker\Framework\Converter\JsonApplicationRequestConverter;
 use Bleicker\Framework\Converter\JsonApplicationRequestConverterInterface;
 use Bleicker\Framework\Converter\WellformedApplicationRequestConverter;
 use Bleicker\Framework\Converter\WellformedApplicationRequestConverterInterface;
+use Bleicker\NodeTypes\Headline;
 use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Site;
 
@@ -33,3 +35,6 @@ Converter::register(Site::class, $siteTypeConverter);
 
 $pageTypeConverter = new PageTypeConverter();
 Converter::register(Page::class, $pageTypeConverter);
+
+$headlineTypeConverter = new HeadlineTypeConverter();
+Converter::register(Headline::class, $headlineTypeConverter);
