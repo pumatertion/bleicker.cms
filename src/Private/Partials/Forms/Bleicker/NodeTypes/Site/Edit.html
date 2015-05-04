@@ -1,3 +1,5 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
 <form class="form" action="/nodemanager/update/{node.id}" method="post">
 	<fieldset>
 		<legend>Update site properties</legend>
@@ -12,3 +14,25 @@
 		<a href="/nodemanager/remove/{node.id}" class="btn btn-danger">Delete</a>
 	</div>
 </form>
+
+<form class="form" action="/nodemanager/insert-into/{node.id}" method="post">
+	<fieldset>
+		<legend>Insert new node</legend>
+		<div class="form-group">
+			<label for="nodetype">Type</label>
+			<select id="nodetype" class="form-control">
+				<f:groupedFor each="{cms:registeredNodeTypes()}" as="nodeTypes" groupBy="group" groupKey="nodeGroup">
+					<optgroup label="{nodeGroup}">
+						<f:for each="{nodeTypes}" as="nodeType" key="type">
+							<option value="{type}">{nodeType.label}</option>
+						</f:for>
+					</optgroup>
+				</f:groupedFor>
+			</select>
+		</div>
+	</fieldset>
+	<div class="form-group">
+		<input type="submit" value="Insert" class="btn btn-primary"/>
+	</div>
+</form>
+
