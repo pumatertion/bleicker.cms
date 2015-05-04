@@ -1,5 +1,5 @@
 <f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
-
+		
 <f:layout name="default"/>
 
 <f:section name="docTitle">
@@ -20,7 +20,9 @@
 			<f:render partial="contentTree" arguments="{of:page}"/>
 		</div>
 		<div class="col-lg-3 col-third">
-			<f:render partial="Forms/{page.nodeType->cms:format.directory()}/Edit" arguments="{node:page}"/>
+			<f:if condition="{node}">
+				<f:render partial="Forms/{page.nodeType->cms:format.directory()}/Edit" arguments="{node:page}"/>
+			</f:if>
 		</div>
 	</div>
 </f:section>
