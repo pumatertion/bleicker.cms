@@ -181,16 +181,16 @@
         },
         {
             "name": "bleicker/framework",
-            "version": "1.4.5",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.framework.git",
-                "reference": "31d18dfa4ec3a808a68023c9745b75ed13225896"
+                "reference": "7ace0ab287cae5cd1271a91ca59ebd2760dc2815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.framework/zipball/31d18dfa4ec3a808a68023c9745b75ed13225896",
-                "reference": "31d18dfa4ec3a808a68023c9745b75ed13225896",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.framework/zipball/7ace0ab287cae5cd1271a91ca59ebd2760dc2815",
+                "reference": "7ace0ab287cae5cd1271a91ca59ebd2760dc2815",
                 "shasum": ""
             },
             "require": {
@@ -222,7 +222,7 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-03 20:04:21"
+            "time": "2015-05-04 09:30:23"
         },
         {
             "name": "bleicker/nodes",

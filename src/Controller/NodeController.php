@@ -64,9 +64,10 @@ class NodeController extends AbstractController {
 	 * @return string
 	 */
 	public function createAction($nodeType) {
-		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.'.$nodeType));
+		/** @var NodeInterface $node */
+		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.' . $nodeType));
 		$this->nodeService->add($node);
-		return $this->view->assign('node', $node)->render();
+		$this->redirect('/nodemanager/' . $node->getId());
 	}
 
 	/**
