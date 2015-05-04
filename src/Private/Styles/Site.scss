@@ -27,6 +27,9 @@ body {
 }
 
 .col-third {
+  form{
+    @extend .well;
+  }
   legend{
     font-size: $font-size-h5;
     text-transform: uppercase;
