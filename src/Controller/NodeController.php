@@ -107,7 +107,7 @@ class NodeController extends AbstractController {
 		$this->nodeService->remove($node);
 
 		if ($parentNode !== NULL) {
-			$this->redirect('/nodemanager/' . $parentNode);
+			$this->redirect('/nodemanager/' . $parentNode->getId());
 		}
 		$this->redirect('/nodemanager');
 	}
