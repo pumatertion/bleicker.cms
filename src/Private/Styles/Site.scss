@@ -99,7 +99,8 @@ body {
     position: relative;
     margin-bottom: $grid-gutter-width/2;
     border-style: dotted;
-    .content{
+    border-radius: 0;
+    .content {
       margin: 0;
     }
     &:hover {
@@ -110,18 +111,13 @@ body {
     &.inactive {
       @extend .alert-info;
       background-color: transparent;
-      &:hover {
-        @extend .alert-info;
-      }
     }
     &.active {
-      @extend .alert-success;
-      &:hover {
-        @extend .alert-success;
-      }
+      @extend .alert-info;
     }
     .options {
       @extend .alert;
+      border-radius: 0;
       display: none;
       position: absolute;
       top: 0;
