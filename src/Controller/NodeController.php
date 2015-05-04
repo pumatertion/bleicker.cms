@@ -51,7 +51,7 @@ class NodeController extends AbstractController {
 	 * @param string $nodeType
 	 * @return string
 	 */
-	public function formAction($nodeType) {
+	public function addAction($nodeType) {
 		$node = ObjectManager::get(Registry::get('nodetypes.' . $nodeType));
 		return $this->view->assign('node', $node)->render();
 	}

@@ -26,6 +26,13 @@ body {
   }
 }
 
+.col-third {
+  legend{
+    font-size: $font-size-h5;
+    text-transform: uppercase;
+  }
+}
+
 .section-title {
   text-transform: uppercase;
   color: $gray-light;
