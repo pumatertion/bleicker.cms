@@ -98,6 +98,7 @@ body {
     @extend .alert;
     position: relative;
     margin-bottom: $grid-gutter-width/2;
+    padding: $grid-gutter-width;
     border-style: dotted;
     border-radius: 0;
     .content {
@@ -117,7 +118,7 @@ body {
     }
     .options {
       @extend .alert;
-      border-radius: 0;
+      border: none;
       display: none;
       position: absolute;
       top: 0;
