@@ -80,7 +80,7 @@ class PageTypeConverter implements TypeConverterInterface {
 	 */
 	protected function getNew(array $source) {
 		$node = new Page();
-		$node->setTitle(Arrays::getValueByPath($source, 'title') !== NULL ? : '');
+		$node->setTitle(Arrays::getValueByPath($source, 'title') === NULL ? '' : Arrays::getValueByPath($source, 'title'));
 		return $node;
 	}
 
@@ -95,7 +95,7 @@ class PageTypeConverter implements TypeConverterInterface {
 		Arrays::unsetValueByPath($source, $this->getIdPath());
 		/** @var Page $node */
 		$node = $this->nodeService->get($nodeId);
-		$node->setTitle(Arrays::getValueByPath($source, 'title'));
+		$node->setTitle(Arrays::getValueByPath($source, 'title') === NULL ? '' : Arrays::getValueByPath($source, 'title'));
 		return $node;
 	}
 }
