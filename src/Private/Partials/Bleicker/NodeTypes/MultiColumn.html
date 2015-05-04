@@ -1,6 +1,4 @@
 <div class="content container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
 	<a href="/nodemanager/{node.id}" class="options"></a>
-	<div class="row">
-		<f:render partial="ContentTree" arguments="{of:node, current:current}"/>
-	</div>
+	<f:render partial="ContentTree" arguments="{of:node, current:current}"/>
 </div>

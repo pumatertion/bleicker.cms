@@ -85,24 +85,39 @@ body {
 }
 
 .col-second {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+  }
+  header {
+    margin: 0;
+    padding: 0;
+  }
   .content {
+    @extend .alert;
     position: relative;
+    margin-bottom: $grid-gutter-width/2;
+    border-style: dotted;
+    .content{
+      margin: 0;
+    }
     &:hover {
       .options {
         display: block;
       }
     }
     &.inactive {
-      @extend .alert, .alert-info;
+      @extend .alert-info;
       background-color: transparent;
       &:hover {
-        @extend .alert, .alert-info;
+        @extend .alert-info;
       }
     }
     &.active {
-      @extend .alert, .alert-success;
+      @extend .alert-success;
       &:hover {
-        @extend .alert, .alert-success;
+        @extend .alert-success;
       }
     }
     .options {
@@ -113,6 +128,8 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
+      margin: 0;
+      padding: 0;
     }
   }
 }
