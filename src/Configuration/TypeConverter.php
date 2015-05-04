@@ -3,6 +3,7 @@
 use Bleicker\Cms\TypeConverter\Node\HeadlineTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\PageTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\SiteTypeConverter;
+use Bleicker\Cms\TypeConverter\Node\TextTypeConverter;
 use Bleicker\Converter\Converter;
 use Bleicker\Converter\TypeConverter\FloatTypeConverter;
 use Bleicker\Converter\TypeConverter\IntegerTypeConverter;
@@ -14,6 +15,7 @@ use Bleicker\Framework\Converter\WellformedApplicationRequestConverterInterface;
 use Bleicker\NodeTypes\Headline;
 use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Site;
+use Bleicker\NodeTypes\Text;
 
 $integerTypeConverter = new IntegerTypeConverter();
 Converter::register(IntegerTypeConverter::class, $integerTypeConverter);
@@ -38,3 +40,6 @@ Converter::register(Page::class, $pageTypeConverter);
 
 $headlineTypeConverter = new HeadlineTypeConverter();
 Converter::register(Headline::class, $headlineTypeConverter);
+
+$textTypeConverter = new TextTypeConverter();
+Converter::register(Text::class, $textTypeConverter);
