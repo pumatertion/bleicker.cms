@@ -226,16 +226,16 @@
         },
         {
             "name": "bleicker/nodes",
-            "version": "0.8.0",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodes.git",
-                "reference": "0bb9aa9720fadd7bab00c0bd41bc3bf92a517950"
+                "reference": "c374306657657ab9cc3544bce79e33f289d81add"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodes/zipball/0bb9aa9720fadd7bab00c0bd41bc3bf92a517950",
-                "reference": "0bb9aa9720fadd7bab00c0bd41bc3bf92a517950",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodes/zipball/c374306657657ab9cc3544bce79e33f289d81add",
+                "reference": "c374306657657ab9cc3544bce79e33f289d81add",
                 "shasum": ""
             },
             "require": {
@@ -260,20 +260,20 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-04 11:22:50"
+            "time": "2015-05-04 19:44:23"
         },
         {
             "name": "bleicker/nodetypes",
-            "version": "0.8.1",
+            "version": "0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodetypes.git",
-                "reference": "f5fa97bb5988cde163418dcc5879d40e5fa187a3"
+                "reference": "5e4e557d1544ce2225d17db7425ecb8fe962d588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/f5fa97bb5988cde163418dcc5879d40e5fa187a3",
-                "reference": "f5fa97bb5988cde163418dcc5879d40e5fa187a3",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/5e4e557d1544ce2225d17db7425ecb8fe962d588",
+                "reference": "5e4e557d1544ce2225d17db7425ecb8fe962d588",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,7 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-04 18:55:16"
+            "time": "2015-05-04 19:48:42"
         },
         {
             "name": "bleicker/objectmanager",
