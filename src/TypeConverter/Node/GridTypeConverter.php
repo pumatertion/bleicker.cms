@@ -5,15 +5,15 @@ namespace Bleicker\Cms\TypeConverter\Node;
 use Bleicker\Converter\TypeConverter\TypeConverterInterface;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\NodeServiceInterface;
-use Bleicker\NodeTypes\MultiColumn;
+use Bleicker\NodeTypes\Grid;
 use Bleicker\ObjectManager\ObjectManager;
 
 /**
- * Class MultiColumnTypeConverter
+ * Class GridTypeConverter
  *
  * @package Bleicker\Cms\TypeConverter\Node
  */
-class MultiColumnTypeConverter implements TypeConverterInterface {
+class GridTypeConverter implements TypeConverterInterface {
 
 	/**
 	 * @var NodeServiceInterface
@@ -30,7 +30,7 @@ class MultiColumnTypeConverter implements TypeConverterInterface {
 	 * @return boolean
 	 */
 	public static function canConvert($source = NULL, $targetType) {
-		if (is_array($source) && $targetType === MultiColumn::class) {
+		if (is_array($source) && $targetType === Grid::class) {
 			return TRUE;
 		}
 		return FALSE;
@@ -38,7 +38,7 @@ class MultiColumnTypeConverter implements TypeConverterInterface {
 
 	/**
 	 * @param array $source
-	 * @return MultiColumn
+	 * @return Grid
 	 */
 	public function convert($source) {
 		if ($this->isUpdate($source)) {
@@ -76,10 +76,10 @@ class MultiColumnTypeConverter implements TypeConverterInterface {
 	 * Returns a new site mapped with source arguments
 	 *
 	 * @param array $source
-	 * @return MultiColumn
+	 * @return Grid
 	 */
 	protected function getNew(array $source) {
-		$node = new MultiColumn();
+		$node = new Grid();
 		return $node;
 	}
 
@@ -87,12 +87,12 @@ class MultiColumnTypeConverter implements TypeConverterInterface {
 	 * Returns an updated site mapped with source arguments
 	 *
 	 * @param array $source
-	 * @return MultiColumn
+	 * @return Grid
 	 */
 	protected function getUpdated(array $source) {
 		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
 		Arrays::unsetValueByPath($source, $this->getIdPath());
-		/** @var MultiColumn $node */
+		/** @var Grid $node */
 		$node = $this->nodeService->get($nodeId);
 		return $node;
 	}

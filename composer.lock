@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "10f7dec9aa6bf558666f06611733c514",
+    "hash": "85e434a23a3f6a60cd1d38eaf2cd2cbe",
     "packages": [
         {
             "name": "bleicker/authentication",
@@ -264,16 +264,16 @@
         },
         {
             "name": "bleicker/nodetypes",
-            "version": "0.7.1",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pumatertion/bleicker.nodetypes.git",
-                "reference": "b39a372a92537dfb04d2ccf34923c36b657211d2"
+                "reference": "f5fa97bb5988cde163418dcc5879d40e5fa187a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/b39a372a92537dfb04d2ccf34923c36b657211d2",
-                "reference": "b39a372a92537dfb04d2ccf34923c36b657211d2",
+                "url": "https://api.github.com/repos/pumatertion/bleicker.nodetypes/zipball/f5fa97bb5988cde163418dcc5879d40e5fa187a3",
+                "reference": "f5fa97bb5988cde163418dcc5879d40e5fa187a3",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,7 @@
                     "email": "carsten@bleicker.de"
                 }
             ],
-            "time": "2015-05-04 17:50:15"
+            "time": "2015-05-04 18:55:16"
         },
         {
             "name": "bleicker/objectmanager",
@@ -1289,12 +1289,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/NamelessCoder/TYPO3.Fluid.git",
-                "reference": "a957702aa45f7320fa69dcac299322e7cfc6f62d"
+                "reference": "735f3362bb79e26fa16295874c962c0f7aa53bda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NamelessCoder/TYPO3.Fluid/zipball/a957702aa45f7320fa69dcac299322e7cfc6f62d",
-                "reference": "a957702aa45f7320fa69dcac299322e7cfc6f62d",
+                "url": "https://api.github.com/repos/NamelessCoder/TYPO3.Fluid/zipball/735f3362bb79e26fa16295874c962c0f7aa53bda",
+                "reference": "735f3362bb79e26fa16295874c962c0f7aa53bda",
                 "shasum": ""
             },
             "require-dev": {
@@ -1318,7 +1318,7 @@
                 "MIT"
             ],
             "description": "The TYPO3 Fluid template rendering engine",
-            "time": "2015-05-01 13:25:07"
+            "time": "2015-05-04 18:53:32"
         },
         {
             "name": "nikic/fast-route",

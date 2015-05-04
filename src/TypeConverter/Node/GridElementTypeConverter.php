@@ -5,15 +5,15 @@ namespace Bleicker\Cms\TypeConverter\Node;
 use Bleicker\Converter\TypeConverter\TypeConverterInterface;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\NodeServiceInterface;
-use Bleicker\NodeTypes\Column;
+use Bleicker\NodeTypes\GridElement;
 use Bleicker\ObjectManager\ObjectManager;
 
 /**
- * Class ColumnTypeConverter
+ * Class GridElementTypeConverter
  *
  * @package Bleicker\Cms\TypeConverter\Node
  */
-class ColumnTypeConverter implements TypeConverterInterface {
+class GridElementTypeConverter implements TypeConverterInterface {
 
 	/**
 	 * @var NodeServiceInterface
@@ -30,7 +30,7 @@ class ColumnTypeConverter implements TypeConverterInterface {
 	 * @return boolean
 	 */
 	public static function canConvert($source = NULL, $targetType) {
-		if (is_array($source) && $targetType === Column::class) {
+		if (is_array($source) && $targetType === GridElement::class) {
 			return TRUE;
 		}
 		return FALSE;
@@ -38,7 +38,7 @@ class ColumnTypeConverter implements TypeConverterInterface {
 
 	/**
 	 * @param array $source
-	 * @return Column
+	 * @return GridElement
 	 */
 	public function convert($source) {
 		if ($this->isUpdate($source)) {
@@ -76,10 +76,10 @@ class ColumnTypeConverter implements TypeConverterInterface {
 	 * Returns a new site mapped with source arguments
 	 *
 	 * @param array $source
-	 * @return Column
+	 * @return GridElement
 	 */
 	protected function getNew(array $source) {
-		$node = new Column();
+		$node = new GridElement();
 		$node->setColspan(Arrays::getValueByPath($source, 'colspan') === NULL ? : Arrays::getValueByPath($source, 'colspan'));
 		$node->setOffset(Arrays::getValueByPath($source, 'offset') === NULL ? : Arrays::getValueByPath($source, 'offset'));
 		return $node;
@@ -89,12 +89,12 @@ class ColumnTypeConverter implements TypeConverterInterface {
 	 * Returns an updated site mapped with source arguments
 	 *
 	 * @param array $source
-	 * @return Column
+	 * @return GridElement
 	 */
 	protected function getUpdated(array $source) {
 		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
 		Arrays::unsetValueByPath($source, $this->getIdPath());
-		/** @var Column $node */
+		/** @var GridElement $node */
 		$node = $this->nodeService->get($nodeId);
 		$node->setColspan(Arrays::getValueByPath($source, 'colspan') === NULL ? : Arrays::getValueByPath($source, 'colspan'));
 		$node->setOffset(Arrays::getValueByPath($source, 'offset') === NULL ? : Arrays::getValueByPath($source, 'offset'));

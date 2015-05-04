@@ -1,8 +1,8 @@
 <?php
 
-use Bleicker\NodeTypes\Column;
+use Bleicker\NodeTypes\Grid;
+use Bleicker\NodeTypes\GridElement;
 use Bleicker\NodeTypes\Headline;
-use Bleicker\NodeTypes\MultiColumn;
 use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Site;
 use Bleicker\NodeTypes\Text;
@@ -33,10 +33,10 @@ Registry::set('nodetypes.text.class', Text::class);
 Registry::set('nodetypes.text.group', 'Content');
 Registry::set('nodetypes.text.label', 'Text');
 
-Registry::set('nodetypes.multicolumn.class', MultiColumn::class);
-Registry::set('nodetypes.multicolumn.group', 'Content');
-Registry::set('nodetypes.multicolumn.label', 'Grid');
+Registry::set('nodetypes.grid.class', Grid::class);
+Registry::set('nodetypes.grid.group', 'Content');
+Registry::set('nodetypes.grid.label', 'Grid');
 
-Registry::set('nodetypes.column.class', Column::class);
-Registry::set('nodetypes.column.group', 'Content');
-Registry::set('nodetypes.column.label', 'Grid element');
+Registry::set('nodetypes.gridelement.class', GridElement::class);
+Registry::set('nodetypes.gridelement.group', 'Content');
+Registry::set('nodetypes.gridelement.label', 'Grid-Element');
