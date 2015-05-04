@@ -94,7 +94,7 @@ class SiteTypeConverter implements TypeConverterInterface {
 		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
 		Arrays::unsetValueByPath($source, $this->getIdPath());
 		/** @var Site $node */
-		$node = $this->nodeService->getNode($nodeId);
+		$node = $this->nodeService->get($nodeId);
 		$node->setTitle(Arrays::getValueByPath($source, 'title'));
 		return $node;
 	}

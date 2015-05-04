@@ -41,7 +41,7 @@ class NodeController extends AbstractController {
 	 */
 	public function showAction($node) {
 		/** @var NodeInterface $node */
-		$node = $this->nodeService->getNode($node);
+		$node = $this->nodeService->get($node);
 		$page = $this->nodeService->locatePage($node);
 		$root = $this->nodeService->locateRoot($node);
 		$sites = $this->nodeService->findSites();
@@ -62,14 +62,13 @@ class NodeController extends AbstractController {
 	 * @return string
 	 */
 	public function updateAction($node) {
-		$node = $this->nodeService->getNode($node);
+		$node = $this->nodeService->get($node);
 		$source = $this->request->getContents();
 		Arrays::setValueByPath($source, 'id', $node->getId());
-		/** @var NodeInterface $updatedNode */
-		$updatedNode = Converter::convert($source, $node->getNodeType());
-		$this->entityManager->persist($updatedNode);
-		$this->entityManager->flush();
-		$this->redirect('/nodemanager/'.$updatedNode->getId());
+		/** @var NodeInterface $converted */
+		$converted = Converter::convert($source, $node->getNodeType());
+		$this->nodeService->update($converted);
+		$this->redirect('/nodemanager/' . $converted->getId());
 	}
 
 	/**
