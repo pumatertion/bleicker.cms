@@ -82,7 +82,7 @@ ObjectManager::register(ConverterInterface::class, $converter);
 include __DIR__ . '/../Configuration/Cache.php';
 include __DIR__ . '/../Configuration/Routes.php';
 include __DIR__ . '/../Configuration/Persistence.php';
-include __DIR__ . '/../Configuration/TypeConverter.php';
 include __DIR__ . '/../Configuration/NodeService.php';
+include __DIR__ . '/../Configuration/TypeConverter.php';
 include __DIR__ . '/../Configuration/NodeTypes.php';
 include __DIR__ . '/../Configuration/View.php';
