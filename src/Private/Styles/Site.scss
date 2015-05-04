@@ -27,10 +27,10 @@ body {
 }
 
 .col-third {
-  form{
+  form {
     @extend .well;
   }
-  legend{
+  legend {
     font-size: $font-size-h5;
     text-transform: uppercase;
   }
@@ -53,12 +53,33 @@ body {
     margin: 0;
     padding: 0;
     li {
-
-      @extend .well;
+      @extend .alert;
       background-color: transparent;
-
+      position: relative;
+      .options {
+        @extend .alert;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
       &:hover {
-        @extend .well
+        .options {
+          display: block;
+        }
+      }
+      &.inactive {
+        &:hover {
+          @extend .alert, .alert-info;
+        }
+      }
+      &.active {
+        @extend .alert, .alert-success;
+        &:hover {
+          @extend .alert, .alert-success;
+        }
       }
     }
   }
