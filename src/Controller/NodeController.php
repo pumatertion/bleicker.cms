@@ -32,7 +32,7 @@ class NodeController extends AbstractController {
 	 */
 	public function indexAction() {
 		$sites = $this->nodeService->findSites();
-		return $this->view->assign('sites', $sites)->assign('page', $sites->first())->render();
+		return $this->view->assign('sites', $sites)->assign('node', $sites->first())->render();
 	}
 
 	/**
@@ -43,9 +43,8 @@ class NodeController extends AbstractController {
 		/** @var NodeInterface $node */
 		$node = $this->nodeService->get($node);
 		$page = $this->nodeService->locatePage($node);
-		$root = $this->nodeService->locateRoot($node);
 		$sites = $this->nodeService->findSites();
-		return $this->view->assign('node', $node)->assign('page', $page)->assign('root', $root)->assign('sites', $sites)->render();
+		return $this->view->assign('node', $node)->assign('page', $page)->assign('sites', $sites)->render();
 	}
 
 	/**

@@ -1,5 +1,5 @@
 <f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
-		
+
 <f:layout name="default"/>
 
 <f:section name="docTitle">
@@ -11,17 +11,18 @@
 		<div class="col-lg-2 col-first">
 			<f:for each="{sites}" as="root">
 				<section class="well">
-					<f:render partial="pageTree" arguments="{of:root, current:page}"/>
+					<f:render partial="pageTree" arguments="{of:root, current:node}"/>
 				</section>
 			</f:for>
 			<f:render partial="createSiteLink"/>
 		</div>
 		<div class="col-lg-7 col-second">
-			<f:render partial="contentTree" arguments="{of:page}"/>
+			<f:render partial="contentTree" arguments="{of:node}"/>
 		</div>
 		<div class="col-lg-3 col-third">
 			<f:if condition="{node}">
-				<f:render partial="Forms/{page.nodeType->cms:format.directory()}/Edit" arguments="{node:page}"/>
+				<f:render partial="Forms/{node.nodeType->cms:format.directory()}/Edit" arguments="{node:node}"/>
+				<f:render partial="Forms/Add" arguments="{node:node}"/>
 			</f:if>
 		</div>
 	</div>
