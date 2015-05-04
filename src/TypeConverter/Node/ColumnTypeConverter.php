@@ -80,6 +80,8 @@ class ColumnTypeConverter implements TypeConverterInterface {
 	 */
 	protected function getNew(array $source) {
 		$node = new Column();
+		$node->setColspan(Arrays::getValueByPath($source, 'colspan') === NULL ? : Arrays::getValueByPath($source, 'colspan'));
+		$node->setOffset(Arrays::getValueByPath($source, 'offset') === NULL ? : Arrays::getValueByPath($source, 'offset'));
 		return $node;
 	}
 
@@ -94,6 +96,8 @@ class ColumnTypeConverter implements TypeConverterInterface {
 		Arrays::unsetValueByPath($source, $this->getIdPath());
 		/** @var Column $node */
 		$node = $this->nodeService->get($nodeId);
+		$node->setColspan(Arrays::getValueByPath($source, 'colspan') === NULL ? : Arrays::getValueByPath($source, 'colspan'));
+		$node->setOffset(Arrays::getValueByPath($source, 'offset') === NULL ? : Arrays::getValueByPath($source, 'offset'));
 		return $node;
 	}
 }
