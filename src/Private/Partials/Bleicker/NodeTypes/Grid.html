@@ -1,4 +1,4 @@
-<div class="content container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
+<div class="node grid container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
 	<f:render partial="options" arguments="{node:node}"/>
 	<f:render partial="ContentTree" arguments="{of:node, current:current}"/>
 </div>
