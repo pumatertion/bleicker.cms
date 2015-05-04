@@ -4,6 +4,7 @@ namespace Bleicker\Cms\Controller;
 
 use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
+use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\NodeInterface;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\ObjectManager\ObjectManager;
@@ -57,6 +58,21 @@ class NodeController extends AbstractController {
 	}
 
 	/**
+	 * @param string $node
+	 * @return string
+	 */
+	public function updateAction($node) {
+		$node = $this->nodeService->getNode($node);
+		$source = $this->request->getContents();
+		Arrays::setValueByPath($source, 'id', $node->getId());
+		/** @var NodeInterface $updatedNode */
+		$updatedNode = Converter::convert($source, $node->getNodeType());
+		$this->entityManager->persist($updatedNode);
+		$this->entityManager->flush();
+		$this->redirect('/nodemanager/'.$updatedNode->getId());
+	}
+
+	/**
 	 * @param string $nodeType
 	 * @return string
 	 */
@@ -64,6 +80,6 @@ class NodeController extends AbstractController {
 		/** @var NodeInterface $node */
 		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.' . $nodeType));
 		$this->nodeService->add($node);
-		$this->redirect('/nodemanager/' . $node->getId());
+		$this->redirect('/nodemanager/' . $node->getId(), 303);
 	}
 }
