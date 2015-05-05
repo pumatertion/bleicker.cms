@@ -1,19 +1,8 @@
-<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
-
 <form class="form" action="/nodemanager/add/{node.id}" method="post">
 	<fieldset>
 		<legend>Insert new node</legend>
 		<div class="form-group">
-			<label for="nodetype">Type</label>
-			<select id="nodetype" name="nodeType" class="form-control">
-				<f:groupedFor each="{cms:registeredNodeTypes()}" as="nodeTypes" groupBy="group" groupKey="nodeGroup">
-					<optgroup label="{nodeGroup}">
-						<f:for each="{nodeTypes}" as="nodeType" key="type">
-							<option value="{type}">{nodeType.label}</option>
-						</f:for>
-					</optgroup>
-				</f:groupedFor>
-			</select>
+			<f:render partial="Forms/PossibleChildrenSelection" arguments="{node:node}"/>
 		</div>
 	</fieldset>
 	<div class="form-group">
