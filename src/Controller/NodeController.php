@@ -76,7 +76,7 @@ class NodeController extends AbstractController {
 		/** @var NodeInterface $node */
 		$node = Converter::convert([], $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 
-		switch($mode){
+		switch ($mode) {
 			case 'into':
 				$this->nodeService->addChild($node, $reference);
 				break;
@@ -87,7 +87,7 @@ class NodeController extends AbstractController {
 				$this->nodeService->addBefore($node, $reference);
 				break;
 		}
-		$this->redirect('/nodemanager/'.$node->getId());
+		$this->redirect('/nodemanager/' . $node->getId());
 	}
 
 	/**
