@@ -5,6 +5,7 @@ namespace Bleicker\Cms\Controller;
 use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Utility\Arrays;
+use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
 use Bleicker\Nodes\NodeInterface;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\ObjectManager\ObjectManager;
@@ -22,9 +23,15 @@ class NodeController extends AbstractController {
 	 */
 	protected $nodeService;
 
+	/**
+	 * @var NodeTypeConfigurationsInterface
+	 */
+	protected $nodeTypeConfigurations;
+
 	public function __construct() {
 		parent::__construct();
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
+		$this->nodeTypeConfigurations = ObjectManager::get(NodeTypeConfigurationsInterface::class);
 	}
 
 	/**
@@ -52,7 +59,8 @@ class NodeController extends AbstractController {
 	 * @return string
 	 */
 	public function addAction($nodeType) {
-		$node = ObjectManager::get(Registry::get('nodetypes.' . $nodeType . '.class'));
+		/** @var NodeInterface $node */
+		$node = Converter::convert([], $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 		return $this->view->assign('node', $node)->render();
 	}
 
@@ -66,7 +74,7 @@ class NodeController extends AbstractController {
 		$nodeType = $this->request->getContent('nodeType');
 
 		/** @var NodeInterface $node */
-		$node = Converter::convert([], Registry::get('nodetypes.' . $nodeType . '.class'));
+		$node = Converter::convert([], $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 
 		switch($mode){
 			case 'into':
@@ -117,7 +125,7 @@ class NodeController extends AbstractController {
 	 */
 	public function createAction($nodeType) {
 		/** @var NodeInterface $node */
-		$node = Converter::convert($this->request->getContents(), Registry::get('nodetypes.' . $nodeType . '.class'));
+		$node = Converter::convert($this->request->getContents(), $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 		$this->nodeService->add($node);
 		$this->redirect('/nodemanager/' . $node->getId(), 303);
 	}
