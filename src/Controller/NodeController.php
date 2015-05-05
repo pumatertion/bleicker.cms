@@ -9,7 +9,6 @@ use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
 use Bleicker\Nodes\NodeInterface;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\ObjectManager\ObjectManager;
-use Bleicker\Registry\Registry;
 
 /**
  * Class NodeController
