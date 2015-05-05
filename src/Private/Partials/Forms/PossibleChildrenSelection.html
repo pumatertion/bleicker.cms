@@ -1,7 +1,6 @@
-<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
 <label for="nodetype">Type</label>
 <select id="nodetype" name="nodeType" class="form-control">
-	<f:groupedFor each="{node->cms:possibleChildrenConfigurations()}" as="groupedConfigurations" groupBy="group"
+	<f:groupedFor each="{configurations}" as="groupedConfigurations" groupBy="group"
 				  groupKey="group">
 		<optgroup label="{group}">
 			<f:for each="{groupedConfigurations}" as="configuration">

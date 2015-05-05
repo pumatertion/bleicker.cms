@@ -48,7 +48,7 @@ class PossibleChildrenConfigurationsViewHelper extends AbstractViewHelper {
 
 		$configurations = new ArrayCollection($this->nodeTypeConfigurations->storage());
 		$nodeConfigurations = $configurations->filter(function (NodeConfigurationInterface $configuration) use ($node) {
-			return $node->getNodeType() === $configuration->getClassName();
+			return $node !== NULL && $node->getNodeType() === $configuration->getClassName();
 		});
 
 		$possibleConfigurations = $configurations->filter(function (NodeConfigurationInterface $configuration) use ($node, $nodeConfigurations) {
