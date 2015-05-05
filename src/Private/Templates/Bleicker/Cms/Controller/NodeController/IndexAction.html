@@ -11,14 +11,14 @@
 		<div class="col-lg-2 col-first">
 			<f:for each="{sites}" as="root">
 				<section>
-					<f:render partial="pageTree" arguments="{of:root, current:node}"/>
+					<f:render partial="pageTree" arguments="{of:root, current:page}"/>
 				</section>
 			</f:for>
 			<hr/>
 			<f:render partial="createSiteLink"/>
 		</div>
 		<div class="col-lg-7 col-second">
-			<f:render partial="contentTree" arguments="{of:node}"/>
+			<f:render partial="contentTree" arguments="{of:page, current:node}"/>
 		</div>
 		<div class="col-lg-3 col-third">
 			<f:if condition="{node}">
