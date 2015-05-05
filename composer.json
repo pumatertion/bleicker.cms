@@ -3,7 +3,7 @@
 	"type": "library",
 	"require": {
 		"bleicker/framework": "1.4.*",
-		"bleicker/nodetypes": "0.8.*",
+		"bleicker/nodetypes": "0.9.*",
 		"namelesscoder/fluid": "dev-master"
 	},
 	"require-dev": {
