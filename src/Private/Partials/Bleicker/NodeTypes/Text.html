@@ -1,0 +1,6 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
+<div class="node text {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
+	<f:render partial="options" arguments="{node:node}"/>
+	<cms:format.nl2br>{node.body}</cms:format.nl2br>
+</div>
