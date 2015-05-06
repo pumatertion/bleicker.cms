@@ -6,7 +6,6 @@ use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManager;
 use Bleicker\Persistence\EntityManagerInterface;
 use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Cache\FilesystemCache as CacheImplementation;
 use Doctrine\ORM\Tools\Setup;
 
 Registry::set('doctrine.schema.paths.nodes', realpath(__DIR__ . "/../../vendor/bleicker/nodes/src/Schema/Persistence"));

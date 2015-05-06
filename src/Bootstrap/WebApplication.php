@@ -10,8 +10,6 @@ use Bleicker\Framework\Http\Handler;
 use Bleicker\Framework\Http\RequestFactory;
 use Bleicker\Framework\Security\AccessVoter;
 use Bleicker\Framework\Security\AccessVoterInterface;
-use Bleicker\Nodes\Configuration\NodeConfiguration;
-use Bleicker\Nodes\Configuration\NodeConfigurationInterface;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurations;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
 use Bleicker\ObjectManager\ObjectManager;
