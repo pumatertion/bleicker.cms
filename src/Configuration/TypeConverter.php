@@ -21,35 +21,14 @@ use Bleicker\NodeTypes\Page;
 use Bleicker\NodeTypes\Site;
 use Bleicker\NodeTypes\Text;
 
-$integerTypeConverter = new IntegerTypeConverter();
-Converter::register(IntegerTypeConverter::class, $integerTypeConverter);
-
-$floatTypeConverter = new FloatTypeConverter();
-Converter::register(FloatTypeConverter::class, $floatTypeConverter);
-
-$stringTypeConverter = new StringTypeConverter();
-Converter::register(StringTypeConverter::class, $stringTypeConverter);
-
-$wellformedRequestTypeConverter = new WellformedApplicationRequestConverter();
-Converter::register(WellformedApplicationRequestConverterInterface::class, $wellformedRequestTypeConverter);
-
-$jsonRequestTypeConverter = new JsonApplicationRequestConverter();
-Converter::register(JsonApplicationRequestConverterInterface::class, $jsonRequestTypeConverter);
-
-$siteTypeConverter = new SiteTypeConverter();
-Converter::register(Site::class, $siteTypeConverter);
-
-$pageTypeConverter = new PageTypeConverter();
-Converter::register(Page::class, $pageTypeConverter);
-
-$headlineTypeConverter = new HeadlineTypeConverter();
-Converter::register(Headline::class, $headlineTypeConverter);
-
-$textTypeConverter = new TextTypeConverter();
-Converter::register(Text::class, $textTypeConverter);
-
-$gridTypeConverter = new GridTypeConverter();
-Converter::register(Grid::class, $gridTypeConverter);
-
-$gridElementTypeConverter = new GridElementTypeConverter();
-Converter::register(GridElement::class, $gridElementTypeConverter);
+Converter::register(IntegerTypeConverter::class, new IntegerTypeConverter());
+Converter::register(FloatTypeConverter::class, new FloatTypeConverter());
+Converter::register(StringTypeConverter::class, new StringTypeConverter());
+Converter::register(WellformedApplicationRequestConverterInterface::class, new WellformedApplicationRequestConverter());
+Converter::register(JsonApplicationRequestConverterInterface::class, new JsonApplicationRequestConverter());
+Converter::register(Site::class, new SiteTypeConverter());
+Converter::register(Page::class, new PageTypeConverter());
+Converter::register(Headline::class, new HeadlineTypeConverter());
+Converter::register(Text::class, new TextTypeConverter());
+Converter::register(Grid::class, new GridTypeConverter());
+Converter::register(GridElement::class, new GridElementTypeConverter());
