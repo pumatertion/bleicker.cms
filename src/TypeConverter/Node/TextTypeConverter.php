@@ -2,7 +2,7 @@
 
 namespace Bleicker\Cms\TypeConverter\Node;
 
-use Bleicker\Converter\TypeConverter\TypeConverterInterface;
+use Bleicker\Converter\AbstractTypeConverter;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\NodeTypes\Text;
@@ -13,7 +13,7 @@ use Bleicker\ObjectManager\ObjectManager;
  *
  * @package Bleicker\Cms\TypeConverter\Node
  */
-class TextTypeConverter implements TypeConverterInterface {
+class TextTypeConverter extends AbstractTypeConverter {
 
 	/**
 	 * @var NodeServiceInterface
