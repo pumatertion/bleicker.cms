@@ -1,10 +1,10 @@
 <?php
 
 use Bleicker\Framework\Context\Context;
-use Bleicker\Registry\Registry;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManager;
 use Bleicker\Persistence\EntityManagerInterface;
+use Bleicker\Registry\Registry;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\ORM\Tools\Setup;
 
