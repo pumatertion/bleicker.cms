@@ -8,6 +8,7 @@ use Bleicker\Routing\RouterInterface;
 /** @var RouterInterface $router */
 $router = ObjectManager::get(RouterInterface::class);
 $router
+	->addRoute('/', 'get', new ControllerRouteData(NodeController::class, 'indexAction'))
 	->addRoute('/nodemanager', 'get', new ControllerRouteData(NodeController::class, 'indexAction'))
 	->addRoute('/nodemanager/choose', 'get', new ControllerRouteData(NodeController::class, 'chooseAction'))
 	->addRoute('/nodemanager/choose/{parent}', 'get', new ControllerRouteData(NodeController::class, 'chooseAction'))
