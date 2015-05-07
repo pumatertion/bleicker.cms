@@ -86,6 +86,7 @@ ObjectManager::register(ConverterInterface::class, $converter);
  */
 ObjectManager::register(NodeTypeConfigurationsInterface::class, NodeTypeConfigurations::class);
 
+include __DIR__ . '/../Configuration/Locales.php';
 include __DIR__ . '/../Configuration/Cache.php';
 include __DIR__ . '/../Configuration/Routes.php';
 include __DIR__ . '/../Configuration/Persistence.php';
