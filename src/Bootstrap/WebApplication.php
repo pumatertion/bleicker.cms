@@ -22,6 +22,8 @@ use Bleicker\Session\Session;
 use Bleicker\Session\SessionInterface;
 use Bleicker\Token\TokenManager;
 use Bleicker\Token\TokenManagerInterface;
+use Bleicker\Translation\Locales;
+use Bleicker\Translation\LocalesInterface;
 
 include __DIR__ . '/../../vendor/autoload.php';
 include __DIR__ . '/../Configuration/Essentials/Secrets.php';
@@ -86,6 +88,12 @@ ObjectManager::register(ConverterInterface::class, $converter);
  */
 $nodeTypeConfigurations = new NodeTypeConfigurations();
 ObjectManager::register(NodeTypeConfigurationsInterface::class, $nodeTypeConfigurations);
+
+/**
+ * Register locales
+ */
+$locales = new Locales();
+ObjectManager::register(LocalesInterface::class, $locales);
 
 include __DIR__ . '/../Configuration/Locales.php';
 include __DIR__ . '/../Configuration/Cache.php';
