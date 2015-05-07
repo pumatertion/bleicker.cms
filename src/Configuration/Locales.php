@@ -2,6 +2,6 @@
 
 use Bleicker\Translation\Locale;
 
-Locale::register('german', 'de', 'DE');
-Locale::register('english', 'en', 'GB');
-Locale::register('france', 'fr', 'FR');
+Locale::register('Deutsch', 'de', 'DE');
+Locale::register('English', 'en', 'GB');
+Locale::register('Français', 'fr', 'FR');
