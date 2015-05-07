@@ -3,6 +3,7 @@
 use Bleicker\Cms\Controller\NodeController;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Routing\ControllerRouteData;
+use Bleicker\Routing\RouteInterface;
 use Bleicker\Routing\RouterInterface;
 
 /** @var RouterInterface $router */
@@ -20,3 +21,13 @@ $router
 	->addRoute('/nodemanager/remove/{node}', 'delete', new ControllerRouteData(NodeController::class, 'removeAction'))
 	->addRoute('/nodemanager/remove/{node}', 'get', new ControllerRouteData(NodeController::class, 'removeAction'))
 	->addRoute('/nodemanager/{node}', 'get', new ControllerRouteData(NodeController::class, 'showAction'));
+
+/**
+ * Prefix every registered route with /{systemLocale}
+ */
+$router->dispatchClosure(function (RouterInterface $router) {
+	/** @var RouteInterface $route */
+	foreach ($router->getRoutes() as $route) {
+		$router->addRoute('/{systemLocale}'.$route->getPattern(), $route->getMethod(), $route->getData());
+	}
+});
