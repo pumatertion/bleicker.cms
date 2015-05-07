@@ -82,9 +82,10 @@ $converter = new Converter();
 ObjectManager::register(ConverterInterface::class, $converter);
 
 /**
- * Register node configuration class
+ * Register nodetype configuration
  */
-ObjectManager::register(NodeTypeConfigurationsInterface::class, NodeTypeConfigurations::class);
+$nodeTypeConfigurations = new NodeTypeConfigurations();
+ObjectManager::register(NodeTypeConfigurationsInterface::class, $nodeTypeConfigurations);
 
 include __DIR__ . '/../Configuration/Locales.php';
 include __DIR__ . '/../Configuration/Cache.php';
