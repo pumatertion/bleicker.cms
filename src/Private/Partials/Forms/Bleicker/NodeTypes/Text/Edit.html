@@ -4,7 +4,7 @@
 		<div class="form-group">
 			<label for="body">Text</label>
 			<textarea class="form-control" id="body" name="body" rows="10"
-					  placeholder="Please add your text">{node.body}</textarea>
+					  placeholder="Please add your text">{node->cms:node.translate(propertyName:'body')}</textarea>
 		</div>
 	</fieldset>
 	<div class="form-group">

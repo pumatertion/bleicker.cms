@@ -1,9 +1,0 @@
-<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
-
-<div class="possible-property-translations">
-	<f:for each="{node->cms:translation.possibleTranslations(propertyName:propertyname)}" as="locale" key="alias">
-		<button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="/nodemanager/localize/{node.id}/{propertyName}/{locale}">+ {alias}
-			<input type="hidden" name="locale" value="{locale}"/>
-		</button>
-	</f:for>
-</div>

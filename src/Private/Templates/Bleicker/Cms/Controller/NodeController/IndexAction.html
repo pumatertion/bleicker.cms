@@ -3,7 +3,7 @@
 <f:layout name="default"/>
 
 <f:section name="docTitle">
-	{page.title}
+	<cms:node.translate propertyName="title">{page}</cms:node.translate>
 </f:section>
 
 <f:section name="docBody">
@@ -21,10 +21,9 @@
 			<f:render partial="contentTree" arguments="{of:page, current:node}"/>
 		</div>
 		<div class="col-lg-3 col-third">
-			<f:if condition="{node}">
-				<f:render partial="Forms/{node.nodeType->cms:format.directory()}/Edit" arguments="{node:node}"/>
-				<f:render partial="Forms/Add" arguments="{node:node}"/>
-			</f:if>
+			<f:render partial="Translation/Menu" arguments="{node:node}"/>
+			<f:render partial="Forms/{node.nodeType->cms:format.directory()}/Edit" arguments="{node:node}"/>
+			<f:render partial="Forms/Add" arguments="{node:node}"/>
 		</div>
 	</div>
 </f:section>

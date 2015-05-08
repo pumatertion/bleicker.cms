@@ -3,7 +3,7 @@
 		<legend>Update page properties</legend>
 		<div class="form-group">
 			<label for="title">Title</label>
-			<input class="form-control" type="text" id="title" name="title" value="{node.title}"
+			<input class="form-control" type="text" id="title" name="title" value="{node->cms:node.translate(propertyName:'title')}"
 				   placeholder="Please give the page a title"/>
 		</div>
 	</fieldset>
