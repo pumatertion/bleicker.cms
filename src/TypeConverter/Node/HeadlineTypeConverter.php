@@ -124,10 +124,10 @@ class HeadlineTypeConverter extends AbstractTypeConverter {
 		$node = $this->nodeService->get($nodeId);
 
 		$titleTranslation = new NodeTranslation('title', $this->getNodeLocale(), Arrays::getValueByPath($source, 'title'));
-		$this->nodeService->addTranslation($node, $titleTranslation);
+		$this->nodeService->addTranslation($node, $titleTranslation->setNode($node));
 
 		$subtitleTranslation = new NodeTranslation('subtitle', $this->getNodeLocale(), Arrays::getValueByPath($source, 'subtitle'));
-		$this->nodeService->addTranslation($node, $subtitleTranslation);
+		$this->nodeService->addTranslation($node, $subtitleTranslation->setNode($node));
 
 		return $node;
 	}

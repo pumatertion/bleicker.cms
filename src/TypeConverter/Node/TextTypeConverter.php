@@ -121,7 +121,7 @@ class TextTypeConverter extends AbstractTypeConverter {
 		$node = $this->nodeService->get($nodeId);
 
 		$bodyTranslation = new NodeTranslation('body', $this->getNodeLocale(), Arrays::getValueByPath($source, 'body'));
-		$this->nodeService->addTranslation($node, $bodyTranslation);
+		$this->nodeService->addTranslation($node, $bodyTranslation->setNode($node));
 
 		return $node;
 	}
