@@ -1,4 +1,4 @@
-<form class="form" action="/nodemanager/update/{node.id}" method="post">
+<form class="form" action="/{cms:translation.systemLocale()}/nodemanager/update/{node.id}" method="post">
 	<fieldset>
 		<legend>Update page properties</legend>
 		<div class="form-group">
@@ -8,7 +8,6 @@
 		</div>
 	</fieldset>
 	<div class="form-group">
-		<input type="submit" value="Update" class="btn btn-primary"/>
-		<a href="/nodemanager/remove/{node.id}" class="btn btn-danger">Delete</a>
+		<f:render partial="Forms/Actions" arguments="{node:node}"/>
 	</div>
 </form>
