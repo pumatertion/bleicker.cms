@@ -46,6 +46,7 @@
 
 body {
   padding-top: $navbar-height + $grid-gutter-width/2;
+  overflow-y: scroll;
 }
 
 .col-first {
