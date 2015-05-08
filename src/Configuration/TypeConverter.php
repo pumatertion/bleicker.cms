@@ -3,6 +3,7 @@
 use Bleicker\Cms\TypeConverter\Node\GridElementTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\GridTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\HeadlineTypeConverter;
+use Bleicker\Cms\TypeConverter\Node\NodeLocaleTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\PageTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\SiteTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\TextTypeConverter;
@@ -23,3 +24,4 @@ HeadlineTypeConverter::register();
 TextTypeConverter::register();
 GridTypeConverter::register();
 GridElementTypeConverter::register();
+NodeLocaleTypeConverter::register();

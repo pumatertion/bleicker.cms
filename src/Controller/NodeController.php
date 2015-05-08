@@ -115,12 +115,12 @@ class NodeController extends AbstractController {
 	 */
 	public function removeAction($node) {
 		$node = $this->nodeService->get($node);
-		$parentNode = $node->getParent();
+		#$parentNode = $node->getParent();
 		$this->nodeService->remove($node);
 
-		if ($parentNode !== NULL) {
-			$this->redirect('/nodemanager/' . $parentNode->getId());
-		}
+//		if ($parentNode !== NULL) {
+//			$this->redirect('/nodemanager/' . $parentNode->getId());
+//		}
 		$this->redirect('/nodemanager');
 	}
 
