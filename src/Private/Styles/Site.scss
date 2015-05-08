@@ -45,10 +45,11 @@
 @import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
 
 body {
-  padding-top: $navbar-height + $grid-gutter-width;
+  padding-top: $navbar-height + $grid-gutter-width/2;
 }
 
 .col-first {
+  margin-top: $grid-gutter-width/2;
   .nav {
     list-style-type: none;
     margin: 0;
@@ -70,6 +71,7 @@ body {
 }
 
 .col-third {
+  margin-top: $grid-gutter-width/2;
   form {
     @extend .well;
   }
