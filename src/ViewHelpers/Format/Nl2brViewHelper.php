@@ -20,6 +20,6 @@ class Nl2brViewHelper extends AbstractViewHelper {
 	 * @return string
 	 */
 	public function render() {
-		return nl2br($this->renderChildren());
+		return nl2br(trim($this->renderChildren()));
 	}
 }
