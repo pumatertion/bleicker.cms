@@ -1,3 +1,5 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
 <f:alias map="{configurations: '{node->cms:possibleChildrenConfigurations()}'}">
 	<f:if condition="{configurations->f:count()}">
 		<form class="form" action="/nodemanager/add/{node.id}" method="post">

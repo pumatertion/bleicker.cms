@@ -1,3 +1,5 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
 <header class="node headline container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
 	<f:render partial="options" arguments="{node:node}"/>
 	<h1><cms:node.translate propertyName="title" node="{node}"/></h1>

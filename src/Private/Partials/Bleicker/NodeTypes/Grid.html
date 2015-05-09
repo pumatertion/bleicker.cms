@@ -1,3 +1,5 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
 <div class="node grid container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
 	<f:render partial="options" arguments="{node:node}"/>
 	<f:render partial="ContentTree" arguments="{of:node, current:current}"/>
