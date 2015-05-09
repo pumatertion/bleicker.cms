@@ -3,6 +3,7 @@
 namespace Bleicker\Cms\ViewHelpers\Translation;
 
 use Bleicker\Nodes\NodeInterface;
+use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\Nodes\NodeTranslation;
 use Bleicker\ObjectManager\ObjectManager;
@@ -30,7 +31,7 @@ class PossibleTranslationsViewHelper extends AbstractViewHelper {
 
 	public function __construct() {
 		$this->locales = ObjectManager::get(LocalesInterface::class);
-		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
+		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 	}
 
 	/**

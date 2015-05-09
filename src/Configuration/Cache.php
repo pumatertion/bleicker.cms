@@ -11,11 +11,11 @@ use TYPO3\Fluid\Core\Cache\SimpleFileCache;
  * Cache Configurations
  */
 if (Context::isProduction()) {
-	ObjectManager::register(FluidCacheInterface::class, function () {
+	ObjectManager::add(FluidCacheInterface::class, function () {
 		return new SimpleFileCache(realpath(__DIR__ . '/../../cache/typo3.fluid'));
 	});
 }
 
-ObjectManager::register(Cache::class, function () {
+ObjectManager::add(Cache::class, function () {
 	return new FilesystemCache(realpath(__DIR__ . '/../../cache/doctrine'));
 });

@@ -3,6 +3,7 @@
 namespace Bleicker\Cms\ViewHelpers\Menus;
 
 use Bleicker\Nodes\NodeInterface;
+use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -25,7 +26,7 @@ class ContentTreeViewHelper extends AbstractViewHelper {
 	protected $nodeService;
 
 	public function __construct() {
-		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
+		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 	}
 
 	/**

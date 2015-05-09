@@ -4,6 +4,7 @@ namespace Bleicker\Cms\TypeConverter\Node;
 
 use Bleicker\Converter\AbstractTypeConverter;
 use Bleicker\Framework\Utility\Arrays;
+use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\NodeTypes\Grid;
 use Bleicker\ObjectManager\ObjectManager;
@@ -21,7 +22,7 @@ class GridTypeConverter extends AbstractTypeConverter {
 	protected $nodeService;
 
 	public function __construct() {
-		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
+		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 	}
 
 	/**

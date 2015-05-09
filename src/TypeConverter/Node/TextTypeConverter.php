@@ -5,6 +5,7 @@ namespace Bleicker\Cms\TypeConverter\Node;
 use Bleicker\Converter\AbstractTypeConverter;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\Locale;
+use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\Nodes\NodeTranslation;
 use Bleicker\NodeTypes\Text;
@@ -24,7 +25,7 @@ class TextTypeConverter extends AbstractTypeConverter {
 
 	public function __construct() {
 		parent::__construct();
-		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
+		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 	}
 
 	/**

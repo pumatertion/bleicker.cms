@@ -11,9 +11,10 @@ use Doctrine\ORM\Tools\Setup;
 Registry::set('doctrine.schema.paths.nodes', realpath(__DIR__ . "/../../vendor/bleicker/nodes/src/Schema/Persistence"));
 Registry::set('doctrine.schema.paths.nodestypes', realpath(__DIR__ . "/../../vendor/bleicker/nodetypes/src/Schema/Persistence"));
 
-ObjectManager::register(EntityManagerInterface::class, function () {
-	return EntityManager::create(
+ObjectManager::add(EntityManagerInterface::class, function () {
+	$entityManager = EntityManager::create(
 		Registry::get('DbConnection'),
 		Setup::createYAMLMetadataConfiguration(Registry::get('doctrine.schema.paths'), !Context::isProduction(), __DIR__ . '/../../cache/doctrine', ObjectManager::get(Cache::class))
 	);
+	ObjectManager::add(EntityManagerInterface::class, $entityManager, TRUE);
 });

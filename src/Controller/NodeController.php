@@ -5,11 +5,11 @@ namespace Bleicker\Cms\Controller;
 use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Utility\Arrays;
+use Bleicker\Nodes\Configuration\NodeTypeConfigurations;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
-use Bleicker\Nodes\Locale;
 use Bleicker\Nodes\NodeInterface;
+use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
-use Bleicker\Nodes\NodeTranslationInterface;
 use Bleicker\ObjectManager\ObjectManager;
 
 /**
@@ -31,8 +31,8 @@ class NodeController extends AbstractController {
 
 	public function __construct() {
 		parent::__construct();
-		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
-		$this->nodeTypeConfigurations = ObjectManager::get(NodeTypeConfigurationsInterface::class);
+		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
+		$this->nodeTypeConfigurations = ObjectManager::get(NodeTypeConfigurationsInterface::class, NodeTypeConfigurations::class);
 	}
 
 	/**
@@ -54,7 +54,7 @@ class NodeController extends AbstractController {
 		/** @var NodeInterface $node */
 		$node = $this->nodeService->get($node);
 		$page = $this->nodeService->locatePage($node);
-		if($page === NULL){
+		if ($page === NULL) {
 			$page = $this->nodeService->locateSite($node);
 		}
 		$sites = $this->nodeService->findSites();
@@ -117,9 +117,9 @@ class NodeController extends AbstractController {
 	 */
 	public function removeAction($node) {
 		$node = $this->nodeService->get($node);
-		if($this->locales->isLocalizationMode()){
+		if ($this->locales->isLocalizationMode()) {
 			$this->nodeService->removeTranslations($node, $this->locales->getSystemLocale());
-			$this->redirect('/nodemanager/'.$node->getId());
+			$this->redirect('/nodemanager/' . $node->getId());
 		}
 		$parentNode = $node->getParent();
 		$this->nodeService->remove($node);
