@@ -17,4 +17,5 @@ ObjectManager::add(EntityManagerInterface::class, function () {
 		Setup::createYAMLMetadataConfiguration(Registry::get('doctrine.schema.paths'), !Context::isProduction(), __DIR__ . '/../../cache/doctrine', ObjectManager::get(Cache::class))
 	);
 	ObjectManager::add(EntityManagerInterface::class, $entityManager, TRUE);
+	return $entityManager;
 });
