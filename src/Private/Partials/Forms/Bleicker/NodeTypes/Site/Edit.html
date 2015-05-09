@@ -1,16 +1,13 @@
-<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
-
-<form class="form" action="/nodemanager/update/{node.id}" method="post">
+<form class="form" action="/{cms:translation.systemLocale()}/nodemanager/update/{node.id}" method="post">
 	<fieldset>
 		<legend>Update site properties</legend>
 		<div class="form-group">
 			<label for="title">Title</label>
-			<input class="form-control" type="text" id="title" name="title" value="{node.title}"
+			<input class="form-control" type="text" id="title" name="title" value="{node->cms:node.translate(propertyName:'title')}"
 				   placeholder="Please give the site a title"/>
 		</div>
 	</fieldset>
 	<div class="form-group">
-		<input type="submit" value="Update" class="btn btn-primary"/>
-		<a href="/nodemanager/remove/{node.id}" class="btn btn-danger">Delete</a>
+		<f:render partial="Forms/Actions" arguments="{node:node}"/>
 	</div>
 </form>

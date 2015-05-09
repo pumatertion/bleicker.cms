@@ -4,7 +4,9 @@ namespace Bleicker\Cms\TypeConverter\Node;
 
 use Bleicker\Converter\AbstractTypeConverter;
 use Bleicker\Framework\Utility\Arrays;
+use Bleicker\Nodes\Locale;
 use Bleicker\Nodes\NodeServiceInterface;
+use Bleicker\Nodes\NodeTranslation;
 use Bleicker\NodeTypes\Site;
 use Bleicker\ObjectManager\ObjectManager;
 
@@ -21,6 +23,7 @@ class SiteTypeConverter extends AbstractTypeConverter {
 	protected $nodeService;
 
 	public function __construct() {
+		parent::__construct();
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class);
 	}
 
@@ -91,11 +94,42 @@ class SiteTypeConverter extends AbstractTypeConverter {
 	 * @return Site
 	 */
 	protected function getUpdated(array $source) {
+		if ($this->isLocalizationMode()) {
+			return $this->getLocalized($source);
+		}
+
 		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
 		Arrays::unsetValueByPath($source, $this->getIdPath());
+
 		/** @var Site $node */
 		$node = $this->nodeService->get($nodeId);
+
 		$node->setTitle(Arrays::getValueByPath($source, 'title') === NULL ? '' : Arrays::getValueByPath($source, 'title'));
+
 		return $node;
+	}
+
+	/**
+	 * @param array $source
+	 * @return Site
+	 */
+	protected function getLocalized(array $source) {
+		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
+		Arrays::unsetValueByPath($source, $this->getIdPath());
+
+		/** @var Site $node */
+		$node = $this->nodeService->get($nodeId);
+
+		$titleTranslation = new NodeTranslation('title', $this->getNodeLocale(), Arrays::getValueByPath($source, 'title'));
+		$this->nodeService->addTranslation($node, $titleTranslation->setNode($node));
+
+		return $node;
+	}
+
+	/**
+	 * @return Locale
+	 */
+	protected function getNodeLocale() {
+		return $this->converter->convert($this->locales->getSystemLocale(), Locale::class);
 	}
 }

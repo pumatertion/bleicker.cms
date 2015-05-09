@@ -6,8 +6,10 @@ use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
+use Bleicker\Nodes\Locale;
 use Bleicker\Nodes\NodeInterface;
 use Bleicker\Nodes\NodeServiceInterface;
+use Bleicker\Nodes\NodeTranslationInterface;
 use Bleicker\ObjectManager\ObjectManager;
 
 /**
@@ -115,9 +117,12 @@ class NodeController extends AbstractController {
 	 */
 	public function removeAction($node) {
 		$node = $this->nodeService->get($node);
+		if($this->locales->isLocalizationMode()){
+			$this->nodeService->removeTranslations($node, $this->locales->getSystemLocale());
+			$this->redirect('/nodemanager/'.$node->getId());
+		}
 		$parentNode = $node->getParent();
 		$this->nodeService->remove($node);
-
 		if ($parentNode !== NULL) {
 			$this->redirect('/nodemanager/' . $parentNode->getId());
 		}

@@ -1,4 +1,5 @@
 /vendor
+/composer.lock
 /db.sqlite
 /bower_components
 /node_modules

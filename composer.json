@@ -2,8 +2,8 @@
 	"name": "bleicker/cms",
 	"type": "library",
 	"require": {
-		"bleicker/framework": "1.5.*",
-		"bleicker/nodetypes": "0.12.*",
+		"bleicker/framework": "1.6.*",
+		"bleicker/nodetypes": "0.13.*",
 		"namelesscoder/fluid": "dev-master"
 	},
 	"require-dev": {

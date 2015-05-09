@@ -1,14 +1,13 @@
-<form class="form" action="/nodemanager/update/{node.id}" method="post">
-	<fieldset>
+<form class="form" action="/{cms:translation.systemLocale()}/nodemanager/update/{node.id}" method="post">
+<fieldset>
 		<legend>Update text properties</legend>
 		<div class="form-group">
 			<label for="body">Text</label>
 			<textarea class="form-control" id="body" name="body" rows="10"
-					  placeholder="Please add your text">{node.body}</textarea>
+					  placeholder="Please add your text">{node->cms:node.translate(propertyName:'body')}</textarea>
 		</div>
 	</fieldset>
 	<div class="form-group">
-		<input type="submit" value="Update" class="btn btn-primary"/>
-		<a href="/nodemanager/remove/{node.id}" class="btn btn-danger">Delete</a>
+		<f:render partial="Forms/Actions" arguments="{node:node}"/>
 	</div>
 </form>

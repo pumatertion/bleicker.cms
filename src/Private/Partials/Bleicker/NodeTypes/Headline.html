@@ -1,7 +1,7 @@
 <header class="node headline container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
 	<f:render partial="options" arguments="{node:node}"/>
-	<h1>{node.title}</h1>
+	<h1><cms:node.translate propertyName="title" node="{node}"/></h1>
 	<f:if condition="{node.subtitle}">
-		<h2>{node.subtitle}</h2>
+		<h2><cms:node.translate propertyName="subtitle" node="{node}"/></h2>
 	</f:if>
 </header>

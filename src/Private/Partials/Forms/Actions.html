@@ -1,0 +1,12 @@
+<f:if condition="{cms:translation.isLocalizationMode()}">
+	<f:then>
+		<button type="submit" class="btn btn-primary btn-action">Update Translation</button>
+		<a href="/{cms:translation.systemLocale()}/nodemanager/remove/{node.id}"
+		   class="btn btn-danger btn-action">Delete Translation</a>
+	</f:then>
+	<f:else>
+		<button type="submit" class="btn btn-primary btn-action">Update</button>
+		<a href="/{cms:translation.systemLocale()}/nodemanager/remove/{node.id}"
+		   class="btn btn-danger btn-action">Delete</a>
+	</f:else>
+</f:if>
