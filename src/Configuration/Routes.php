@@ -1,5 +1,6 @@
 <?php
 
+use Bleicker\Cms\Controller\LoginController;
 use Bleicker\Cms\Controller\NodeController;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Routing\ControllerRouteData;
@@ -10,6 +11,8 @@ use Bleicker\Routing\RouterInterface;
 $router = ObjectManager::get(RouterInterface::class);
 $router
 	->addRoute('/', 'get', new ControllerRouteData(NodeController::class, 'indexAction'))
+	->addRoute('/authenticate', 'get', new ControllerRouteData(LoginController::class, 'indexAction'))
+	->addRoute('/authenticate', 'post', new ControllerRouteData(LoginController::class, 'authenticateAction'))
 	->addRoute('/nodemanager', 'get', new ControllerRouteData(NodeController::class, 'indexAction'))
 	->addRoute('/nodemanager/choose', 'get', new ControllerRouteData(NodeController::class, 'chooseAction'))
 	->addRoute('/nodemanager/choose/{parent}', 'get', new ControllerRouteData(NodeController::class, 'chooseAction'))
