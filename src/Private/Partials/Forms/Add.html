@@ -2,7 +2,7 @@
 
 <f:alias map="{configurations: '{node->cms:possibleChildrenConfigurations()}'}">
 	<f:if condition="{configurations->f:count()}">
-		<form class="form" action="/nodemanager/add/{node.id}" method="post">
+		<form class="form" action="/{cms:translation.systemLocale()}/nodemanager/add/{node.id}" method="post">
 			<fieldset>
 				<legend>Insert new node into</legend>
 				<div class="form-group">
@@ -17,7 +17,7 @@
 </f:alias>
 <f:alias map="{configurations: '{node.parent->cms:possibleChildrenConfigurations()}'}">
 	<f:if condition="{configurations->f:count()}">
-		<form class="form" action="/nodemanager/add/{node.id}" method="post">
+		<form class="form" action="/{cms:translation.systemLocale()}/nodemanager/add/{node.id}" method="post">
 			<fieldset>
 				<legend>Insert new node before</legend>
 				<div class="form-group">
@@ -28,7 +28,7 @@
 				</div>
 			</fieldset>
 		</form>
-		<form class="form" action="/nodemanager/add/{node.id}" method="post">
+		<form class="form" action="/{cms:translation.systemLocale()}/nodemanager/add/{node.id}" method="post">
 			<fieldset>
 				<legend>Insert new node after</legend>
 				<div class="form-group">
