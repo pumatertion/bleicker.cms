@@ -10,6 +10,7 @@ use Doctrine\ORM\Tools\Setup;
 
 Registry::set('doctrine.schema.paths.nodes', realpath(__DIR__ . "/../../vendor/bleicker/nodes/src/Schema/Persistence"));
 Registry::set('doctrine.schema.paths.nodestypes', realpath(__DIR__ . "/../../vendor/bleicker/nodetypes/src/Schema/Persistence"));
+Registry::set('doctrine.schema.paths.account', realpath(__DIR__ . "/../../vendor/bleicker/account/src/Schema/Persistence"));
 
 ObjectManager::add(EntityManagerInterface::class, function () {
 	$entityManager = EntityManager::create(
