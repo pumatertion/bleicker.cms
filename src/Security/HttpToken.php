@@ -9,6 +9,7 @@ use Bleicker\Framework\Utility\Arrays;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Token\AbstractToken;
+use Bleicker\Framework\Http\Request;
 
 /**
  * Class Token
@@ -36,6 +37,14 @@ class HttpToken extends AbstractToken {
 		$this->entityManager = ObjectManager::get(EntityManagerInterface::class);
 		$this->request = ObjectManager::get(ApplicationRequestInterface::class);
 		$this->entityManager = ObjectManager::get(EntityManagerInterface::class);
+
+		/** @var Request $httpRequest */
+		$httpRequest = $this->request->getMainRequest();
+		$httpRequest->getSession()->start();
+		if($httpRequest->getSession()->has(self::SESSION_KEY)){
+			$this->status = self::AUTHENTICATION_SUCCESS;
+			return $this;
+		}
 		return parent::initialize();
 	}
 
