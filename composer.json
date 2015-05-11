@@ -3,8 +3,7 @@
 	"type": "library",
 	"require": {
 		"bleicker/framework": "1.7.*",
-		"bleicker/account": "@dev",
-		"bleicker/authentication": "2.0.*",
+		"bleicker/authentication": "2.1.*",
 		"bleicker/nodetypes": "0.13.*",
 		"namelesscoder/fluid": "dev-master"
 	},
@@ -26,11 +25,5 @@
 		"psr-4": {
 			"Tests\\Bleicker\\Cms\\": "tests"
 		}
-	},
-	"repositories": [
-		{
-			"type": "git",
-			"url": "git@github.com:pumatertion/bleicker.account.git"
-		}
-	]
+	}
 }
