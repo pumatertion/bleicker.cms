@@ -1,5 +1,6 @@
 <?php
 
+use Bleicker\Cms\Http\Handler;
 use Bleicker\Converter\Converter;
 use Bleicker\Converter\ConverterInterface;
 use Bleicker\FastRouter\Router;
@@ -7,6 +8,7 @@ use Bleicker\Framework\Context\Context;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurations;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
 use Bleicker\ObjectManager\ObjectManager;
+use Bleicker\Request\HandlerInterface;
 use Bleicker\Routing\RouterInterface;
 
 include __DIR__ . '/../../vendor/autoload.php';
@@ -26,6 +28,11 @@ ObjectManager::add(ConverterInterface::class, Converter::class);
  * Register nodetype configuration
  */
 ObjectManager::add(NodeTypeConfigurationsInterface::class, NodeTypeConfigurations::class);
+
+/**
+ * Register http handler
+ */
+ObjectManager::add(HandlerInterface::class, Handler::class);
 
 include __DIR__ . '/../Configuration/Locales.php';
 include __DIR__ . '/../Configuration/Cache.php';
