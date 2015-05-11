@@ -19,6 +19,9 @@ class LoginController extends AbstractController {
 	 * @return string
 	 */
 	public function indexAction($originControllerName = NULL, $originMethodName = NULL, ControllerInvokationExceptionInterface $invokedException = NULL) {
+		if ($invokedException !== NULL) {
+			$this->view->assign('interceptedUri', $this->request->getMainRequest()->getRequestUri());
+		}
 		return $this->view->assign('exception', $invokedException)->render();
 	}
 
@@ -26,6 +29,10 @@ class LoginController extends AbstractController {
 	 * @return void
 	 */
 	public function authenticateAction() {
+		$interceptedUri = $this->request->getContent('interceptedUri');
+		if ($interceptedUri !== '') {
+			$this->redirect($interceptedUri, 303, 'Redirect to Intercepted Request', FALSE);
+		}
 		$this->redirect('/authenticate');
 	}
 }

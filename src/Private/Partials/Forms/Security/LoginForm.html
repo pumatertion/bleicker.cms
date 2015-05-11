@@ -1,4 +1,5 @@
 <form class="form" action="/{cms:translation.systemLocale()}/authenticate" method="post">
+	<input type="hidden" name="interceptedUri" value="{interceptedUri}"/>
 	<fieldset>
 		<legend>
 			<f:if condition="{exception}">
