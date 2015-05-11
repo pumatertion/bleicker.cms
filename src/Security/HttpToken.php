@@ -35,7 +35,6 @@ class HttpToken extends AbstractSessionToken {
 	protected function initialize() {
 		$this->entityManager = ObjectManager::get(EntityManagerInterface::class);
 		$this->request = ObjectManager::get(ApplicationRequestInterface::class);
-		$this->entityManager = ObjectManager::get(EntityManagerInterface::class);
 		return parent::initialize();
 	}
 
