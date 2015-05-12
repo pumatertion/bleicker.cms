@@ -84,4 +84,12 @@ class HttpToken extends AbstractSessionToken {
 		$this->request->getMainRequest()->getSession()->start();
 		$this->request->getMainRequest()->getSession()->set($this->getSessionKey(), $account->getId());
 	}
+
+	/**
+	 * @return void
+	 */
+	public function clearSession() {
+		$this->request->getMainRequest()->getSession()->start();
+		$this->request->getMainRequest()->getSession()->remove($this->getSessionKey());
+	}
 }
