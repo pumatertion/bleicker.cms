@@ -1,8 +1,9 @@
 <?php
 
-use Bleicker\Framework\WebApplication;
+include __DIR__ . '/../vendor/autoload.php';
 
-include __DIR__ . '/../src/Bootstrap/WebApplication.php';
+use Bleicker\Framework\ApplicationFactory;
 
-$app = new WebApplication();
-$app->run();
+ApplicationFactory::http(function(){
+	include __DIR__ . '/../src/Configuration/Web.php';
+})->run();

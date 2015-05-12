@@ -5,7 +5,7 @@ namespace Bleicker\Cms\Security;
 use Bleicker\Account\Account;
 use Bleicker\Account\AccountInterface;
 use Bleicker\Account\Credential;
-use Bleicker\Framework\ApplicationRequestInterface;
+use Bleicker\Framework\HttpApplicationRequestInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Token\AbstractSessionToken;
@@ -20,7 +20,7 @@ class HttpToken extends AbstractSessionToken {
 	const USERNAME = 'username', PASSWORD = 'password';
 
 	/**
-	 * @var ApplicationRequestInterface
+	 * @var HttpApplicationRequestInterface
 	 */
 	protected $request;
 
@@ -34,7 +34,7 @@ class HttpToken extends AbstractSessionToken {
 	 */
 	protected function initialize() {
 		$this->entityManager = ObjectManager::get(EntityManagerInterface::class);
-		$this->request = ObjectManager::get(ApplicationRequestInterface::class);
+		$this->request = ObjectManager::get(HttpApplicationRequestInterface::class);
 		return parent::initialize();
 	}
 
@@ -42,8 +42,8 @@ class HttpToken extends AbstractSessionToken {
 	 * @return AccountInterface
 	 */
 	public function reconstituteAccountFromSession() {
-		$this->request->getMainRequest()->getSession()->start();
-		$accountId = $this->request->getMainRequest()->getSession()->get($this->getSessionKey());
+		$this->request->getParentRequest()->getSession()->start();
+		$accountId = $this->request->getParentRequest()->getSession()->get($this->getSessionKey());
 		if ($accountId !== NULL) {
 			$queryBuilder = $this->entityManager->createQueryBuilder();
 			$accounts = $queryBuilder->select('a')->from(Account::class, 'a')->where('a.id = :id')
@@ -81,15 +81,15 @@ class HttpToken extends AbstractSessionToken {
 		/** @var Account $account */
 		$account = $accounts[0];
 
-		$this->request->getMainRequest()->getSession()->start();
-		$this->request->getMainRequest()->getSession()->set($this->getSessionKey(), $account->getId());
+		$this->request->getParentRequest()->getSession()->start();
+		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), $account->getId());
 	}
 
 	/**
 	 * @return void
 	 */
 	public function clearSession() {
-		$this->request->getMainRequest()->getSession()->start();
-		$this->request->getMainRequest()->getSession()->remove($this->getSessionKey());
+		$this->request->getParentRequest()->getSession()->start();
+		$this->request->getParentRequest()->getSession()->remove($this->getSessionKey());
 	}
 }
