@@ -1,0 +1,6 @@
+<f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
+
+<div class="node image container-fluid {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
+	<f:render partial="options" arguments="{node:node}"/>
+	<img src="{node->cms:node.translate(propertyName:'resource')}" title="{node->cms:node.translate(propertyName:'title')}" alt="{node->cms:node.translate(propertyName:'alt')}"/>
+</div>
