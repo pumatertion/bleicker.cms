@@ -6,8 +6,10 @@ use Bleicker\Converter\AbstractTypeConverter;
 use Bleicker\Framework\Utility\Arrays;
 use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
+use Bleicker\Nodes\NodeTranslation;
 use Bleicker\NodeTypes\GridElement;
 use Bleicker\ObjectManager\ObjectManager;
+use Bleicker\Nodes\Locale;
 
 /**
  * Class GridElementTypeConverter
@@ -22,6 +24,7 @@ class GridElementTypeConverter extends AbstractTypeConverter {
 	protected $nodeService;
 
 	public function __construct() {
+		parent::__construct();
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 	}
 
@@ -93,6 +96,11 @@ class GridElementTypeConverter extends AbstractTypeConverter {
 	 * @return GridElement
 	 */
 	protected function getUpdated(array $source) {
+
+		if ($this->isLocalizationMode()) {
+			return $this->getLocalized($source);
+		}
+
 		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
 		Arrays::unsetValueByPath($source, $this->getIdPath());
 		/** @var GridElement $node */
@@ -101,4 +109,33 @@ class GridElementTypeConverter extends AbstractTypeConverter {
 		$node->setOffset(Arrays::getValueByPath($source, 'offset') === NULL ? : Arrays::getValueByPath($source, 'offset'));
 		return $node;
 	}
+
+	/**
+	 * @param array $source
+	 * @return GridElement
+	 */
+	protected function getLocalized(array $source) {
+		$nodeId = Arrays::getValueByPath($source, $this->getIdPath());
+		Arrays::unsetValueByPath($source, $this->getIdPath());
+
+		/** @var GridElement $node */
+		$node = $this->nodeService->get($nodeId);
+
+		$colspanTranslation = new NodeTranslation('colspan', $this->getNodeLocale(), Arrays::getValueByPath($source, 'colspan'));
+		$this->nodeService->addTranslation($node, $colspanTranslation->setNode($node));
+
+		$offsetTranslation = new NodeTranslation('offset', $this->getNodeLocale(), Arrays::getValueByPath($source, 'offset'));
+		$this->nodeService->addTranslation($node, $offsetTranslation->setNode($node));
+
+		return $node;
+	}
+
+	/**
+	 * @return Locale
+	 */
+	protected function getNodeLocale() {
+		return $this->converter->convert($this->locales->getSystemLocale(), Locale::class);
+	}
+
+
 }

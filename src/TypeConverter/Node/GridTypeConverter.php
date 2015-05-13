@@ -22,6 +22,7 @@ class GridTypeConverter extends AbstractTypeConverter {
 	protected $nodeService;
 
 	public function __construct() {
+		parent::__construct();
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 	}
 

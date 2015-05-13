@@ -1,6 +1,6 @@
 <f:fluid xmlns:cms="Bleicker\Cms\ViewHelpers"/>
 
-<div class="node gridelement col-sm-{node.colspan} col-sm-offset-{node.offset} {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
+<div class="node gridelement col-sm-{node->cms:node.translate(propertyName:'colspan')} col-sm-offset-{node->cms:node.translate(propertyName:'offset')} {f:if(condition:'{node.id}=={current.id}', then:' active', else:' inactive')}">
 	<f:render partial="options" arguments="{node:node}"/>
 	<f:render partial="ContentTree" arguments="{of:node, current:current}"/>
 </div>
