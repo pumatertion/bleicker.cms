@@ -3,10 +3,12 @@
 use Bleicker\Cms\TypeConverter\Node\GridElementTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\GridTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\HeadlineTypeConverter;
+use Bleicker\Cms\TypeConverter\Node\ImageTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\NodeLocaleTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\PageTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\SiteTypeConverter;
 use Bleicker\Cms\TypeConverter\Node\TextTypeConverter;
+use Bleicker\Cms\TypeConverter\Request\MultipartApplicationRequestConverter;
 use Bleicker\Converter\TypeConverter\FloatTypeConverter;
 use Bleicker\Converter\TypeConverter\IntegerTypeConverter;
 use Bleicker\Converter\TypeConverter\StringTypeConverter;
@@ -21,3 +23,5 @@ TextTypeConverter::register();
 GridTypeConverter::register();
 GridElementTypeConverter::register();
 NodeLocaleTypeConverter::register();
+ImageTypeConverter::register();
+MultipartApplicationRequestConverter::register();

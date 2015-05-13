@@ -104,6 +104,7 @@ class NodeController extends AbstractController {
 	public function updateAction($node) {
 		$node = $this->nodeService->get($node);
 		$source = $this->request->getContents();
+		$source = array_merge($source, $this->request->getParentRequest()->files->all());
 		Arrays::setValueByPath($source, 'id', $node->getId());
 		/** @var NodeInterface $converted */
 		$converted = Converter::convert($source, $node->getNodeType());
