@@ -12,14 +12,14 @@ use TYPO3\Fluid\Core\Cache\SimpleFileCache;
  */
 if (Context::isProduction()) {
 	ObjectManager::add(FluidCacheInterface::class, function () {
-		$fluidCache = new SimpleFileCache(realpath(__DIR__ . '/../../cache/typo3.fluid'));
+		$fluidCache = new SimpleFileCache(realpath(__DIR__ . '/../../../cache/typo3.fluid'));
 		ObjectManager::add(FluidCacheInterface::class, $fluidCache, TRUE);
 		return $fluidCache;
 	});
 }
 
 ObjectManager::add(Cache::class, function () {
-	$doctrineCache = new FilesystemCache(realpath(__DIR__ . '/../../cache/doctrine'));
+	$doctrineCache = new FilesystemCache(realpath(__DIR__ . '/../../../cache/doctrine'));
 	ObjectManager::add(Cache::class, $doctrineCache, TRUE);
 	return $doctrineCache;
 });
