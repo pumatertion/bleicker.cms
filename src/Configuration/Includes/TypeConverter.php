@@ -24,4 +24,3 @@ GridTypeConverter::register();
 GridElementTypeConverter::register();
 NodeLocaleTypeConverter::register();
 ImageTypeConverter::register();
-MultipartApplicationRequestConverter::register();
