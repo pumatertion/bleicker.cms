@@ -8,14 +8,10 @@ use Bleicker\Registry\Registry;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\ORM\Tools\Setup;
 
-Registry::set('doctrine.schema.paths.nodes', realpath(__DIR__ . "/../../../vendor/bleicker/nodes/src/Schema/Persistence"));
-Registry::set('doctrine.schema.paths.nodestypes', realpath(__DIR__ . "/../../../vendor/bleicker/nodetypes/src/Schema/Persistence"));
-Registry::set('doctrine.schema.paths.account', realpath(__DIR__ . "/../../../vendor/bleicker/account/src/Schema/Persistence"));
-
 ObjectManager::add(EntityManagerInterface::class, function () {
 	$entityManager = EntityManager::create(
-		Registry::get('DbConnection'),
-		Setup::createYAMLMetadataConfiguration(Registry::get('doctrine.schema.paths'), !Context::isProduction(), __DIR__ . '/../../../cache/doctrine', ObjectManager::get(Cache::class))
+		Registry::get('doctrine.db.default'),
+		Setup::createYAMLMetadataConfiguration(Registry::get('paths.doctrine.schema'), !Context::isProduction(), Registry::get('paths.cache.default') . '/doctrine', ObjectManager::get(Cache::class))
 	);
 	ObjectManager::add(EntityManagerInterface::class, $entityManager, TRUE);
 	return $entityManager;

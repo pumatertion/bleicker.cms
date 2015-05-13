@@ -5,7 +5,7 @@
 /node_modules
 npm-debug.log
 .sass-cache
-Secrets.local.php
+*.local.php
 !/cache
 /cache/*
 !/cache/routing
