@@ -20,7 +20,7 @@ class LoginController extends AbstractController {
 	 */
 	public function indexAction($originControllerName = NULL, $originMethodName = NULL, ControllerInvokationExceptionInterface $invokedException = NULL) {
 		if ($invokedException !== NULL) {
-			$this->view->assign('interceptedUri', $this->request->getMainRequest()->getRequestUri());
+			$this->view->assign('interceptedUri', $this->request->getParentRequest()->getRequestUri());
 		}
 		return $this->view->assign('exception', $invokedException)->render();
 	}

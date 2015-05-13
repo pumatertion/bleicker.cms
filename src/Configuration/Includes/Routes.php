@@ -31,6 +31,6 @@ $router
 $router->dispatchClosure(function (RouterInterface $router) {
 	/** @var RouteInterface $route */
 	foreach ($router->getRoutes() as $route) {
-		$router->addRoute('/{systemLocale}'.$route->getPattern(), $route->getMethod(), $route->getData());
+		$router->addRoute('/{systemLocale}' . $route->getPattern(), $route->getMethod(), $route->getData());
 	}
 });

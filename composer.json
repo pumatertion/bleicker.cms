@@ -2,8 +2,7 @@
 	"name": "bleicker/cms",
 	"type": "library",
 	"require": {
-		"bleicker/framework": "1.7.*",
-		"bleicker/authentication": "2.2.*",
+		"bleicker/framework": "1.9.*",
 		"bleicker/nodetypes": "0.13.*",
 		"namelesscoder/fluid": "dev-master"
 	},
