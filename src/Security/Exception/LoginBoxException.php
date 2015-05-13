@@ -2,7 +2,7 @@
 
 namespace Bleicker\Cms\Security\Exception;
 
-use Bleicker\Cms\Controller\LoginController;
+use Bleicker\Cms\Controller\AuthenticationController;
 use Bleicker\Framework\Security\Vote\Exception\AbstractControllerInvokationException;
 
 /**
@@ -12,5 +12,5 @@ use Bleicker\Framework\Security\Vote\Exception\AbstractControllerInvokationExcep
  */
 class LoginBoxException extends AbstractControllerInvokationException {
 
-	const CONTROLLER_NAME = LoginController::class, METHOD_NAME = 'indexAction';
+	const CONTROLLER_NAME = AuthenticationController::class, METHOD_NAME = 'indexAction';
 }

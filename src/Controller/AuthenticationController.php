@@ -2,15 +2,18 @@
 
 namespace Bleicker\Cms\Controller;
 
+use Bleicker\Authentication\AuthenticationManagerInterface;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Security\Vote\Exception\ControllerInvokationExceptionInterface;
+use Bleicker\ObjectManager\ObjectManager;
+use Bleicker\Token\TokenInterface;
 
 /**
- * Class LoginController
+ * Class AuthenticationController
  *
  * @package Bleicker\Cms\Controller
  */
-class LoginController extends AbstractController {
+class AuthenticationController extends AbstractController {
 
 	/**
 	 * @param string $originControllerName
@@ -34,5 +37,17 @@ class LoginController extends AbstractController {
 			$this->redirect($interceptedUri, 303, 'Redirect to Intercepted Request', FALSE);
 		}
 		$this->redirect('/authenticate');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function logoutAction() {
+		/** @var AuthenticationManagerInterface $authenticationManager */
+		$authenticationManager = ObjectManager::get(AuthenticationManagerInterface::class);
+		$authenticationManager->getTokens()->forAll(function ($key, TokenInterface $token) use ($authenticationManager) {
+			$authenticationManager->logout($token);
+		});
+		$this->redirect('/');
 	}
 }
