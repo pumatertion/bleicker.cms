@@ -43,11 +43,11 @@ class UsernamePasswordToken extends AbstractSessionToken {
 	 */
 	public function reconstituteAccountFromSession() {
 		$this->request->getParentRequest()->getSession()->start();
-		$accountId = $this->request->getParentRequest()->getSession()->get($this->getSessionKey());
-		if ($accountId !== NULL) {
+		$accountIdentity = $this->request->getParentRequest()->getSession()->get($this->getSessionKey());
+		if ($accountIdentity !== NULL) {
 			$queryBuilder = $this->entityManager->createQueryBuilder();
-			$accounts = $queryBuilder->select('a')->from(Account::class, 'a')->where('a.id = :id')
-				->setParameter('id', $accountId)
+			$accounts = $queryBuilder->select('a')->from(Account::class, 'a')->where('a.identity = :identity')
+				->setParameter('identity', $accountIdentity)
 				->getQuery()->execute();
 			if (count($accounts) === 1) {
 				return $accounts[0];
@@ -69,21 +69,20 @@ class UsernamePasswordToken extends AbstractSessionToken {
 	public function fetchAndSetAccount() {
 		$identity = $this->request->getContent(self::USERNAME);
 		$queryBuilder = $this->entityManager->createQueryBuilder();
-		$accounts = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('c.value = :value AND a.identity = :identity')
+		$credentials = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('c.value = :value AND a.identity = :identity')
 			->setParameter('identity', $identity)
 			->setParameter('value', $this->getCredential()->getValue())
 			->getQuery()->execute();
 
-		if (count($accounts) !== 1) {
+		if (count($credentials) !== 1) {
 			return $this;
 		}
 
-		/** @var Account $account */
-		$account = $accounts[0];
-
-		$this->credential->setAccount($account);
+		/** @var Credential $credential */
+		$credential = $credentials[0];
+		$this->credential->setAccount($credential->getAccount());
 		$this->request->getParentRequest()->getSession()->start();
-		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), $account->getId());
+		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), $credential->getAccount()->getIdentity());
 	}
 
 	/**
