@@ -45,9 +45,12 @@ class AuthenticationController extends AbstractController {
 	public function logoutAction() {
 		/** @var AuthenticationManagerInterface $authenticationManager */
 		$authenticationManager = ObjectManager::get(AuthenticationManagerInterface::class);
-		$authenticationManager->getTokens()->forAll(function ($key, TokenInterface $token) use ($authenticationManager) {
+		$tokens = $authenticationManager->getTokens();
+		/** @var TokenInterface $token */
+		while($token = $tokens->current()){
 			$authenticationManager->logout($token);
-		});
+			$tokens->next();
+		}
 		$this->redirect('/');
 	}
 }
