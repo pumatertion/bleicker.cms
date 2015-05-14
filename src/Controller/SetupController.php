@@ -73,7 +73,7 @@ class SetupController extends AbstractController {
 	 * @return string
 	 */
 	public function createDatabaseAction(){
-		$this->redirect('/setup/database');
+		$this->redirect('/setup/admin');
 	}
 
 	/**
