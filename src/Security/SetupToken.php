@@ -48,7 +48,7 @@ class SetupToken extends AbstractSessionToken {
 		if ($account !== TRUE) {
 			return NULL;
 		}
-		$role = new Role('Administrator');
+		$role = new Role('Setup.Administrator');
 		$account = new Account();
 		$account->addRole($role);
 		return $account;
@@ -69,7 +69,7 @@ class SetupToken extends AbstractSessionToken {
 		if ($tokenPassword == $this->credential->getValue()) {
 			return $this;
 		}
-		$role = new Role('Administrator');
+		$role = new Role('Setup.Administrator');
 		$account = new Account();
 		$account->addRole($role);
 		$this->credential->setAccount($account);
