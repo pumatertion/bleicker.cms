@@ -8,6 +8,9 @@ use Bleicker\Account\Role;
 use Bleicker\Cms\Security\SetupToken;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Security\Vote\Exception\ControllerInvokationExceptionInterface;
+use Bleicker\Nodes\NodeServiceInterface;
+use Bleicker\NodeTypes\Site;
+use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Registry\Registry;
 
 /**
@@ -75,7 +78,7 @@ class SetupController extends AbstractController {
 
 	/**
 	 * @return string
-	 * @todo validate url argument
+	 * @todo validate url
 	 */
 	public function createDatabaseAction() {
 		$path = Registry::get('paths.root') . '/src/Configuration/Includes/Secrets.local.php';
@@ -102,6 +105,7 @@ CONTENT;
 	public function createSchemaAction() {
 		$tool = new \Doctrine\ORM\Tools\SchemaTool($this->entityManager);
 		$tool->createSchema($this->entityManager->getMetadataFactory()->getAllMetadata());
+		$this->createFirstSite();
 		$this->redirect('/setup/admin');
 	}
 
@@ -128,5 +132,15 @@ CONTENT;
 		$this->entityManager->flush();
 
 		$this->redirect('/nodemanager');
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function createFirstSite(){
+		$nodeService = ObjectManager::get(NodeServiceInterface::class);
+		$site = new Site();
+		$site->setTitle('www.foo.com');
+		$nodeService->add($site);
 	}
 }
