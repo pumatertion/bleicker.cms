@@ -57,13 +57,6 @@ class SetupController extends AbstractController {
 	/**
 	 * @return string
 	 */
-	public function authenticateAction() {
-		$this->redirect('/setup');
-	}
-
-	/**
-	 * @return string
-	 */
 	public function setupAction() {
 		return $this->view->render();
 	}
