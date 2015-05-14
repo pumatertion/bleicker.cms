@@ -49,7 +49,10 @@ class SetupController extends AbstractController {
 	 * @return string
 	 */
 	public function authenticationAction($originControllerName = NULL, $originMethodName = NULL, ControllerInvokationExceptionInterface $invokedException = NULL) {
-		return $this->view->render();
+		if (file_exists($this->tokenFile)) {
+			return $this->view->render();
+		}
+		$this->redirect('/setup/new-token');
 	}
 
 	/**
