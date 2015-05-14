@@ -22,7 +22,7 @@ class SetupController extends AbstractController {
 
 	public function __construct() {
 		parent::__construct();
-		$this->tokenFile = Registry::get('paths.tokens.default') . self::TOKEN_FILENAME;
+		$this->tokenFile = Registry::get('paths.tokens.default') . '/' . self::TOKEN_FILENAME;
 	}
 
 	/**
