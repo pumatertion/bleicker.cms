@@ -81,6 +81,7 @@ class UsernamePasswordToken extends AbstractSessionToken {
 		/** @var Account $account */
 		$account = $accounts[0];
 
+		$this->credential->setAccount($account);
 		$this->request->getParentRequest()->getSession()->start();
 		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), $account->getId());
 	}
