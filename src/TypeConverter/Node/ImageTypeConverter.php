@@ -11,6 +11,7 @@ use Bleicker\Nodes\NodeTranslation;
 use Bleicker\NodeTypes\Image;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Registry\Registry;
+use Bleicker\Translation\Translation;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -113,8 +114,9 @@ class ImageTypeConverter extends AbstractTypeConverter {
 
 		$resource = Arrays::getValueByPath($source, 'resource');
 		if ($resource instanceof UploadedFile) {
-			$realPath = $this->handleResource($resource);
-			$node->setResource($realPath);
+			$this->remove($node->getResource());
+			$fileName = $this->move($resource);
+			$node->setResource($fileName);
 		}
 
 		return $node;
@@ -139,8 +141,12 @@ class ImageTypeConverter extends AbstractTypeConverter {
 
 		$resource = Arrays::getValueByPath($source, 'resource');
 		if ($resource instanceof UploadedFile) {
-			$realPath = $this->handleResource($resource);
-			$resourceTranslation = new NodeTranslation('resource', $this->getNodeLocale(), $realPath);
+			$translation = new Translation('resource', $this->locales->getSystemLocale());
+			if ($node->hasTranslation($translation)) {
+				$this->remove($node->getTranslation($translation)->getValue());
+			}
+			$fileName = $this->move($resource);
+			$resourceTranslation = new NodeTranslation('resource', $this->getNodeLocale(), $fileName);
 			$this->nodeService->addTranslation($node, $resourceTranslation->setNode($node));
 		}
 
@@ -155,11 +161,25 @@ class ImageTypeConverter extends AbstractTypeConverter {
 	}
 
 	/**
-	 * @param UploadedFile $resource
-	 * @return string The Filepath after handling
+	 * @param string $resource
+	 * @return boolean
 	 */
-	protected function handleResource(UploadedFile $resource) {
-		$movedFile = $resource->move(Registry::get('paths.uploads.default'), $resource->getBasename() . '.' . $resource->guessExtension());
-		return $movedFile->getRealPath();
+	protected function remove($resource = NULL) {
+		$directory = realpath(Registry::get('paths.uploads.default'));
+		$resourcePath = $directory . '/' . $resource;
+		if (file_exists($resourcePath)) {
+			return unlink($resourcePath);
+		}
+		return FALSE;
+	}
+
+	/**
+	 * @param UploadedFile $resource
+	 * @return string The name of the file after upload
+	 */
+	protected function move(UploadedFile $resource) {
+		$directory = realpath(Registry::get('paths.uploads.default'));
+		$movedFile = $resource->move($directory, $resource->getBasename() . '.' . $resource->guessExtension());
+		return $movedFile->getFilename();
 	}
 }
