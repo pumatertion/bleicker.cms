@@ -52,14 +52,14 @@ class SetupController extends AbstractController {
 		if (file_exists($this->tokenFile)) {
 			return $this->view->render();
 		}
-		$this->redirect('/setup/new-token');
+		$this->redirect('/setup/token');
 	}
 
 	/**
 	 * @return string
 	 */
 	public function setupAction() {
-		$this->redirect('/setup-database');
+		$this->redirect('/setup/database');
 	}
 
 	/**
@@ -73,7 +73,7 @@ class SetupController extends AbstractController {
 	 * @return string
 	 */
 	public function createDatabaseAction(){
-		$this->redirect('/setup-database');
+		$this->redirect('/setup/database');
 	}
 
 	/**
