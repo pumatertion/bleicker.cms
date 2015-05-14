@@ -11,9 +11,9 @@ use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Token\AbstractSessionToken;
 
 /**
- * Class Token
+ * Class HttpToken
  *
- * @package Bleicker\Account
+ * @package Bleicker\Cms\Security
  */
 class HttpToken extends AbstractSessionToken {
 
