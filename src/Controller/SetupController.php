@@ -3,6 +3,7 @@
 namespace Bleicker\Cms\Controller;
 
 use Bleicker\Framework\Controller\AbstractController;
+use Bleicker\Framework\Security\Vote\Exception\ControllerInvokationExceptionInterface;
 use Bleicker\Registry\Registry;
 
 /**
@@ -44,9 +45,12 @@ class SetupController extends AbstractController {
 	}
 
 	/**
+	 * @param string $originControllerName
+	 * @param string $originMethodName
+	 * @param ControllerInvokationExceptionInterface $invokedException
 	 * @return string
 	 */
-	public function authenticationAction() {
+	public function authenticationAction($originControllerName = NULL, $originMethodName = NULL, ControllerInvokationExceptionInterface $invokedException = NULL) {
 		return $this->view->render();
 	}
 
