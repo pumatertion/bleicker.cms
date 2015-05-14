@@ -66,7 +66,7 @@ class SetupToken extends AbstractSessionToken {
 	 */
 	public function fetchAndSetAccount() {
 		$tokenPassword = file_get_contents(self::getTokenFilePath());
-		if ($tokenPassword == $this->credential->getValue()) {
+		if ($tokenPassword !== $this->credential->getValue()) {
 			return $this;
 		}
 		$role = new Role('Setup.Administrator');
