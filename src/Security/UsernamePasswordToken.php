@@ -75,7 +75,7 @@ class UsernamePasswordToken extends AbstractSessionToken {
 			->getQuery()->execute();
 
 		if (count($accounts) !== 1) {
-			return FALSE;
+			return $this;
 		}
 
 		/** @var Account $account */
