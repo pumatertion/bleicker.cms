@@ -49,7 +49,7 @@ class SetupToken extends AbstractSessionToken {
 			return NULL;
 		}
 		$role = new Role('Setup.Administrator');
-		$account = new Account();
+		$account = new Account('Setup-Admin');
 		$account->addRole($role);
 		return $account;
 	}
@@ -70,7 +70,7 @@ class SetupToken extends AbstractSessionToken {
 			return $this;
 		}
 		$role = new Role('Setup.Administrator');
-		$account = new Account();
+		$account = new Account('Setup-Admin');
 		$account->addRole($role);
 		$this->credential->setAccount($account);
 		$this->request->getParentRequest()->getSession()->start();
