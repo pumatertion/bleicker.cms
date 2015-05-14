@@ -72,7 +72,7 @@ class SetupToken extends AbstractSessionToken {
 		$role = new Role('Administrator');
 		$account = new Account();
 		$account->addRole($role);
-
+		$this->credential->setAccount($account);
 		$this->request->getParentRequest()->getSession()->start();
 		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), TRUE);
 	}
