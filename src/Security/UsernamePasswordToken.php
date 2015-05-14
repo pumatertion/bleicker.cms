@@ -11,11 +11,11 @@ use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Token\AbstractSessionToken;
 
 /**
- * Class HttpToken
+ * Class UsernamePasswordToken
  *
  * @package Bleicker\Cms\Security
  */
-class HttpToken extends AbstractSessionToken {
+class UsernamePasswordToken extends AbstractSessionToken {
 
 	const USERNAME = 'username', PASSWORD = 'password';
 
