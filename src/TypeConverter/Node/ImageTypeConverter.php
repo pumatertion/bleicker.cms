@@ -179,7 +179,7 @@ class ImageTypeConverter extends AbstractTypeConverter {
 	 */
 	protected function move(UploadedFile $resource) {
 		$directory = realpath(Registry::get('paths.uploads.default'));
-		$movedFile = $resource->move($directory, $resource->getBasename() . '.' . $resource->guessExtension());
+		$movedFile = $resource->move($directory, $resource->getClientOriginalName() . uniqid('_', TRUE) . '.' . $resource->guessExtension());
 		return $movedFile->getFilename();
 	}
 }
