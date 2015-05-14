@@ -15,6 +15,6 @@ class SetupController extends AbstractController {
 	 * @return string
 	 */
 	public function indexAction() {
-		return 'foo';
+		return $this->view->render();
 	}
 }
