@@ -9,6 +9,7 @@ use Bleicker\Framework\HttpApplicationRequestInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Token\AbstractSessionToken;
+use Doctrine\DBAL\DBALException;
 
 /**
  * Class UsernamePasswordToken
@@ -42,16 +43,20 @@ class UsernamePasswordToken extends AbstractSessionToken {
 	 * @return AccountInterface
 	 */
 	public function reconstituteAccountFromSession() {
-		$this->request->getParentRequest()->getSession()->start();
-		$accountIdentity = $this->request->getParentRequest()->getSession()->get($this->getSessionKey());
-		if ($accountIdentity !== NULL) {
-			$queryBuilder = $this->entityManager->createQueryBuilder();
-			$accounts = $queryBuilder->select('a')->from(Account::class, 'a')->where('a.identity = :identity')
-				->setParameter('identity', $accountIdentity)
-				->getQuery()->execute();
-			if (count($accounts) === 1) {
-				return $accounts[0];
+		try {
+			$this->request->getParentRequest()->getSession()->start();
+			$accountIdentity = $this->request->getParentRequest()->getSession()->get($this->getSessionKey());
+			if ($accountIdentity !== NULL) {
+				$queryBuilder = $this->entityManager->createQueryBuilder();
+				$accounts = $queryBuilder->select('a')->from(Account::class, 'a')->where('a.identity = :identity')
+					->setParameter('identity', $accountIdentity)
+					->getQuery()->execute();
+				if (count($accounts) === 1) {
+					return $accounts[0];
+				}
 			}
+		} catch (DBALException $exception) {
+			return NULL;
 		}
 		return NULL;
 	}
@@ -67,12 +72,16 @@ class UsernamePasswordToken extends AbstractSessionToken {
 	 * @return $this
 	 */
 	public function fetchAndSetAccount() {
-		$identity = $this->request->getContent(self::USERNAME);
-		$queryBuilder = $this->entityManager->createQueryBuilder();
-		$credentials = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('c.value = :value AND a.identity = :identity')
-			->setParameter('identity', $identity)
-			->setParameter('value', $this->getCredential()->getValue())
-			->getQuery()->execute();
+		try {
+			$identity = $this->request->getContent(self::USERNAME);
+			$queryBuilder = $this->entityManager->createQueryBuilder();
+			$credentials = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('c.value = :value AND a.identity = :identity')
+				->setParameter('identity', $identity)
+				->setParameter('value', $this->getCredential()->getValue())
+				->getQuery()->execute();
+		} catch (DBALException $exception) {
+			return $this;
+		}
 
 		if (count($credentials) !== 1) {
 			return $this;
