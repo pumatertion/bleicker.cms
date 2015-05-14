@@ -36,7 +36,7 @@ class AuthenticationController extends AbstractController {
 		if ($interceptedUri !== '') {
 			$this->redirect($interceptedUri, 303, 'Redirect to Intercepted Request', FALSE);
 		}
-		$this->redirect('/authenticate');
+		$this->redirect('/');
 	}
 
 	/**
