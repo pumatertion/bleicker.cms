@@ -87,14 +87,31 @@ class SetupController extends AbstractController {
 
 use Bleicker\Registry\Registry;
 
-Registry::set('doctrine.db.default.url', '%1\$s');
+Registry::set('doctrine.db.default.driver', '%1\$s');
+Registry::set('doctrine.db.default.host', '%2\$s');
+Registry::set('doctrine.db.default.port', '%3\$s');
+Registry::set('doctrine.db.default.dbname', '%4\$s');
+Registry::set('doctrine.db.default.path', '%5\$s');
+Registry::set('doctrine.db.default.user', '%6\$s');
+Registry::set('doctrine.db.default.password', '%7\$s');
+Registry::set('doctrine.db.default.charset', '%8\$s');
+
 CONTENT;
 
 		if (is_file($path)) {
 			unlink($path);
 		}
 
-		file_put_contents($path, sprintf($content, $this->request->getContent('url')));
+		file_put_contents($path, sprintf($content,
+			$this->request->getContent('driver'),
+			$this->request->getContent('host'),
+			$this->request->getContent('port'),
+			$this->request->getContent('dbname'),
+			$this->request->getContent('path'),
+			$this->request->getContent('user'),
+			$this->request->getContent('password'),
+			$this->request->getContent('charset')
+		));
 
 		$this->redirect('/setup/schema', 307);
 	}
@@ -104,7 +121,7 @@ CONTENT;
 	 */
 	public function createSchemaAction() {
 		$tool = new \Doctrine\ORM\Tools\SchemaTool($this->entityManager);
-		$tool->createSchema($this->entityManager->getMetadataFactory()->getAllMetadata());
+		$tool->updateSchema($this->entityManager->getMetadataFactory()->getAllMetadata());
 		$this->createFirstSite();
 		$this->redirect('/setup/admin');
 	}
@@ -137,7 +154,7 @@ CONTENT;
 	/**
 	 * @return void
 	 */
-	protected function createFirstSite(){
+	protected function createFirstSite() {
 		$nodeService = ObjectManager::get(NodeServiceInterface::class);
 		$site = new Site();
 		$site->setTitle('www.foo.com');
