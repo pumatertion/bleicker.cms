@@ -59,6 +59,34 @@ class SetupController extends AbstractController {
 	 * @return string
 	 */
 	public function setupAction() {
+		$this->redirect('/setup-database');
+	}
+
+	/**
+	 * @return string
+	 */
+	public function setupDatabaseAction() {
 		return $this->view->render();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function createDatabaseAction(){
+		$this->redirect('/setup-database');
+	}
+
+	/**
+	 * @return string
+	 */
+	public function setupAdministratorAction() {
+		return $this->view->render();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function createAdministratorAction(){
+		$this->redirect('/nodemanager');
 	}
 }
