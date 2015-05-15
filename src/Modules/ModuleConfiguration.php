@@ -108,7 +108,7 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	}
 
 	/**
-	 * @param $roleName
+	 * @param string $roleName
 	 * @return $this
 	 */
 	public function allowRoleName($roleName) {
@@ -117,7 +117,7 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	}
 
 	/**
-	 * @param $roleName
+	 * @param string $roleName
 	 * @return $this
 	 */
 	public function forbidRoleName($roleName) {
