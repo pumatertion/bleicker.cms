@@ -165,10 +165,12 @@ class ImageTypeConverter extends AbstractTypeConverter {
 	 * @return boolean
 	 */
 	protected function remove($resource = NULL) {
-		$directory = realpath(Registry::get('paths.uploads.default'));
-		$resourcePath = $directory . '/' . $resource;
-		if (file_exists($resourcePath)) {
-			return unlink($resourcePath);
+		if ($resource !== NULL || !empty($resource)) {
+			$directory = realpath(Registry::get('paths.uploads.default'));
+			$resourcePath = $directory . '/' . $resource;
+			if (file_exists($resourcePath)) {
+				return unlink($resourcePath);
+			}
 		}
 		return FALSE;
 	}
