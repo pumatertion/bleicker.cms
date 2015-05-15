@@ -143,7 +143,7 @@ CONTENT;
 			->setIdentity($this->request->getContent('username'))
 			->addRole(new Role('Administrator'));
 
-		$credentialValue = $this->request->getContent('password');
+		$credentialValue = Bcrypt::encrypt($this->request->getContent('password'));
 		$credential = new Credential($credentialValue, $account);
 
 		$this->entityManager->persist($credential);

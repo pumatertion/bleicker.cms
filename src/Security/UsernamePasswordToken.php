@@ -5,6 +5,7 @@ namespace Bleicker\Cms\Security;
 use Bleicker\Account\Account;
 use Bleicker\Account\AccountInterface;
 use Bleicker\Account\Credential;
+use Bleicker\Encryption\Bcrypt;
 use Bleicker\Framework\HttpApplicationRequestInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManagerInterface;
@@ -75,23 +76,23 @@ class UsernamePasswordToken extends AbstractSessionToken {
 		try {
 			$identity = $this->request->getContent(self::USERNAME);
 			$queryBuilder = $this->entityManager->createQueryBuilder();
-			$credentials = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('c.value = :value AND a.identity = :identity')
+			$credentials = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('a.identity = :identity')
 				->setParameter('identity', $identity)
-				->setParameter('value', $this->getCredential()->getValue())
 				->getQuery()->execute();
 		} catch (DBALException $exception) {
 			return $this;
 		}
 
-		if (count($credentials) !== 1) {
-			return $this;
+		/** @var Credential $credential */
+		foreach ($credentials as $credential) {
+			if (Bcrypt::validate($this->credential->getValue(), $credential->getValue())) {
+				$this->credential->setAccount($credential->getAccount());
+				$this->request->getParentRequest()->getSession()->start();
+				$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), $credential->getAccount()->getIdentity());
+			}
 		}
 
-		/** @var Credential $credential */
-		$credential = $credentials[0];
-		$this->credential->setAccount($credential->getAccount());
-		$this->request->getParentRequest()->getSession()->start();
-		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), $credential->getAccount()->getIdentity());
+		return $this;
 	}
 
 	/**
