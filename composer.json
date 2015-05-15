@@ -4,7 +4,7 @@
 	"require": {
 		"bleicker/framework": "1.10.*",
 		"bleicker/encryption": "0.0.*",
-		"bleicker/nodetypes": "0.14.*",
+		"bleicker/nodetypes": "0.15.*",
 		"namelesscoder/fluid": "dev-master"
 	},
 	"require-dev": {
