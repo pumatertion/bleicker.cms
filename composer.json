@@ -3,6 +3,7 @@
 	"type": "library",
 	"require": {
 		"bleicker/framework": "1.10.*",
+		"bleicker/encryption": "0.0.*",
 		"bleicker/nodetypes": "0.14.*",
 		"namelesscoder/fluid": "dev-master"
 	},

@@ -6,6 +6,7 @@ use Bleicker\Account\Account;
 use Bleicker\Account\Credential;
 use Bleicker\Account\Role;
 use Bleicker\Cms\Security\SetupToken;
+use Bleicker\Encryption\Bcrypt;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Security\Vote\Exception\ControllerInvokationExceptionInterface;
 use Bleicker\Nodes\NodeServiceInterface;
@@ -45,7 +46,7 @@ class SetupController extends AbstractController {
 	 */
 	public function createTokenAction() {
 		$password = $this->request->getContent('password');
-		file_put_contents($this->tokenFile, $password);
+		file_put_contents($this->tokenFile, Bcrypt::encrypt($password));
 		$this->redirect('/setup/authentication');
 	}
 

@@ -5,6 +5,7 @@ namespace Bleicker\Cms\Security;
 use Bleicker\Account\Account;
 use Bleicker\Account\AccountInterface;
 use Bleicker\Account\Role;
+use Bleicker\Encryption\Bcrypt;
 use Bleicker\Framework\HttpApplicationRequestInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Registry\Registry;
@@ -66,7 +67,7 @@ class SetupToken extends AbstractSessionToken {
 	 */
 	public function fetchAndSetAccount() {
 		$tokenPassword = file_get_contents(self::getTokenFilePath());
-		if ($tokenPassword !== $this->credential->getValue()) {
+		if(!Bcrypt::validate($this->credential->getValue(), $tokenPassword)){
 			return $this;
 		}
 		$role = new Role('Setup.Administrator');
