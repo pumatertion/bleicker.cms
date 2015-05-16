@@ -4,12 +4,12 @@ namespace Bleicker\Cms\TypeConverter\Node;
 
 use Bleicker\Converter\AbstractTypeConverter;
 use Bleicker\Framework\Utility\Arrays;
+use Bleicker\Nodes\Locale;
 use Bleicker\Nodes\NodeService;
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\Nodes\NodeTranslation;
 use Bleicker\NodeTypes\GridElement;
 use Bleicker\ObjectManager\ObjectManager;
-use Bleicker\Nodes\Locale;
 
 /**
  * Class GridElementTypeConverter
@@ -136,6 +136,4 @@ class GridElementTypeConverter extends AbstractTypeConverter {
 	protected function getNodeLocale() {
 		return $this->converter->convert($this->locales->getSystemLocale(), Locale::class);
 	}
-
-
 }
