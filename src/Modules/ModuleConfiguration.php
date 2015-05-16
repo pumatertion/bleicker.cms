@@ -126,7 +126,7 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	 * @param string $roleName
 	 * @return $this
 	 */
-	public function allowRoleName($roleName) {
+	public function addAllowedRoleName($roleName) {
 		$this->allowedRoles[$roleName] = TRUE;
 		return $this;
 	}
@@ -135,7 +135,7 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	 * @param string $roleName
 	 * @return $this
 	 */
-	public function forbidRoleName($roleName) {
+	public function removeAllowedRoleName($roleName) {
 		if ($this->allowsRoleName($roleName)) {
 			unset($this->allowedRoles[$roleName]);
 		}

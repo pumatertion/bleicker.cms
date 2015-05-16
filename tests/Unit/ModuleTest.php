@@ -42,7 +42,7 @@ class ModuleTest extends UnitTestCase {
 	 * @test
 	 */
 	public function allowsRoleTest() {
-		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->allowRoleName('foo')->allowRoleName('bar')->allowRoleName('baz')->forbidRoleName('baz');
+		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->addAllowedRoleName('foo')->addAllowedRoleName('bar')->addAllowedRoleName('baz')->removeAllowedRoleName('baz');
 		$this->assertTrue(ModuleConfigurations::has(ExampleModule::class));
 		/** @var ModuleConfigurationInterface $exampleModuleConfiguration */
 		$exampleModuleConfiguration = ModuleConfigurations::get(ExampleModule::class);

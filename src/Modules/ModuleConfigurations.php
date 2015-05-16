@@ -45,11 +45,11 @@ class ModuleConfigurations extends AbstractContainer implements ModuleConfigurat
 		$allowed = $configurations->filter(function(ModuleConfigurationInterface $moduleConfiguration) use ($roles){
 			/** @var RoleInterface $role */
 			foreach($roles as $role){
-				if(!$moduleConfiguration->allowsRoleName($role->getName())){
-					return FALSE;
+				if($moduleConfiguration->allowsRoleName($role->getName())){
+					return TRUE;
 				}
 			}
-			return TRUE;
+			return FALSE;
 		});
 		return $allowed;
 	}

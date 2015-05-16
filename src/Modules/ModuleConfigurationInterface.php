@@ -53,11 +53,11 @@ interface ModuleConfigurationInterface {
 	 * @param string $roleName
 	 * @return $this
 	 */
-	public function allowRoleName($roleName);
+	public function addAllowedRoleName($roleName);
 
 	/**
 	 * @param string $roleName
 	 * @return $this
 	 */
-	public function forbidRoleName($roleName);
+	public function removeAllowedRoleName($roleName);
 }

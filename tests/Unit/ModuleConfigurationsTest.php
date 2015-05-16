@@ -30,8 +30,8 @@ class ModuleConfigurationsTest extends UnitTestCase {
 	 * @test
 	 */
 	public function getAllowedByRolesTest() {
-		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->allowRoleName('foo')->allowRoleName('bar');
-		AnotherExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->allowRoleName('foo')->allowRoleName('baz');
+		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->addAllowedRoleName('foo')->addAllowedRoleName('bar');
+		AnotherExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->addAllowedRoleName('foo')->addAllowedRoleName('baz');
 
 		$foo = new Role('foo');
 		$bar = new Role('bar');
@@ -39,18 +39,18 @@ class ModuleConfigurationsTest extends UnitTestCase {
 		$notUsed = new Role('Guest');
 
 		$roles = new ArrayCollection([$foo]);
-		$this->assertEquals(2, ModuleConfigurations::getAllowedByRoles($roles)->count(), 'All available');
+		$this->assertEquals(2, ModuleConfigurations::getAllowedByRoles($roles)->count());
 
 		$roles = new ArrayCollection([$foo, $bar]);
-		$this->assertEquals(1, ModuleConfigurations::getAllowedByRoles($roles)->count(), 'Not allowed for bar');
+		$this->assertEquals(2, ModuleConfigurations::getAllowedByRoles($roles)->count());
 
 		$roles = new ArrayCollection([$foo, $baz]);
-		$this->assertEquals(1, ModuleConfigurations::getAllowedByRoles($roles)->count(), 'Not allowed for baz');
+		$this->assertEquals(2, ModuleConfigurations::getAllowedByRoles($roles)->count());
 
 		$roles = new ArrayCollection([$foo, $bar, $baz]);
-		$this->assertEquals(0, ModuleConfigurations::getAllowedByRoles($roles)->count(), 'Not allowed for bar && baz');
+		$this->assertEquals(2, ModuleConfigurations::getAllowedByRoles($roles)->count());
 
 		$roles = new ArrayCollection([$notUsed]);
-		$this->assertEquals(0, ModuleConfigurations::getAllowedByRoles($roles)->count(), 'Not allowed for not configured role');
+		$this->assertEquals(0, ModuleConfigurations::getAllowedByRoles($roles)->count());
 	}
 }
