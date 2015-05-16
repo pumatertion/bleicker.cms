@@ -30,8 +30,8 @@ class ModuleConfigurationsTest extends UnitTestCase {
 	 * @test
 	 */
 	public function getAllowedByRolesTest() {
-		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP)->allowRoleName('foo')->allowRoleName('bar');
-		AnotherExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP)->allowRoleName('foo')->allowRoleName('baz');
+		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->allowRoleName('foo')->allowRoleName('bar');
+		AnotherExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->allowRoleName('foo')->allowRoleName('baz');
 
 		$foo = new Role('foo');
 		$bar = new Role('bar');

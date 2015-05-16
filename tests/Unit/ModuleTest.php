@@ -28,20 +28,21 @@ class ModuleTest extends UnitTestCase {
 	 * @test
 	 */
 	public function moduleRegistrationTest() {
-		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP);
+		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo');
 		$this->assertTrue(ModuleConfigurations::has(ExampleModule::class));
 		/** @var ModuleConfigurationInterface $exampleModuleConfiguration */
 		$exampleModuleConfiguration = ModuleConfigurations::get(ExampleModule::class);
 		$this->assertEquals('label', $exampleModuleConfiguration->getLabel());
 		$this->assertEquals('description', $exampleModuleConfiguration->getDescription());
 		$this->assertEquals(ExampleModule::MANAGEMENT_GROUP, $exampleModuleConfiguration->getGroup());
+		$this->assertEquals('/foo', $exampleModuleConfiguration->getUri());
 	}
 
 	/**
 	 * @test
 	 */
 	public function allowsRoleTest() {
-		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP)->allowRoleName('foo')->allowRoleName('bar')->allowRoleName('baz')->forbidRoleName('baz');
+		ExampleModule::register('label', 'description', ExampleModule::MANAGEMENT_GROUP, '/foo')->allowRoleName('foo')->allowRoleName('bar')->allowRoleName('baz')->forbidRoleName('baz');
 		$this->assertTrue(ModuleConfigurations::has(ExampleModule::class));
 		/** @var ModuleConfigurationInterface $exampleModuleConfiguration */
 		$exampleModuleConfiguration = ModuleConfigurations::get(ExampleModule::class);

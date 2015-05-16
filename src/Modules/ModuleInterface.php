@@ -15,7 +15,8 @@ interface ModuleInterface {
 	 * @param string $label
 	 * @param string $description
 	 * @param string $group
+	 * @param string $uri
 	 * @return ModuleConfigurationInterface
 	 */
-	public static function register($label, $description, $group);
+	public static function register($label, $description, $group, $uri);
 }

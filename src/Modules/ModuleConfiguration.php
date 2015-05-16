@@ -29,6 +29,11 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	/**
 	 * @var string
 	 */
+	protected $uri;
+
+	/**
+	 * @var string
+	 */
 	protected $className;
 
 	/**
@@ -41,12 +46,14 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	 * @param string $label
 	 * @param string $description
 	 * @param string $group
+	 * @param string $uri
 	 */
-	public function __construct($className, $label, $description, $group) {
+	public function __construct($className, $label, $description, $group, $uri) {
 		$this->className = $className;
 		$this->label = $label;
 		$this->description = $description;
 		$this->group = $group;
+		$this->uri = $uri;
 	}
 
 	/**
@@ -54,9 +61,10 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	 * @param string $label
 	 * @param string $description
 	 * @param string $group
+	 * @param string $uri
 	 * @return ModuleConfigurationInterface
 	 */
-	public static function register($className, $label, $description, $group) {
+	public static function register($className, $label, $description, $group, $uri) {
 		/** @var ModuleConfigurationsInterface $configurations */
 		$configurations = ObjectManager::get(ModuleConfigurationsInterface::class, function () {
 			$configurations = new ModuleConfigurations();
@@ -97,6 +105,13 @@ class ModuleConfiguration implements ModuleConfigurationInterface {
 	 */
 	public function getDescription() {
 		return $this->description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUri() {
+		return $this->uri;
 	}
 
 	/**

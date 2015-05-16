@@ -13,9 +13,10 @@ interface ModuleConfigurationInterface {
 	 * @param string $label
 	 * @param string $description
 	 * @param string $group
+	 * @param string $uri
 	 * @return ModuleConfigurationInterface
 	 */
-	public static function register($className, $label, $description, $group);
+	public static function register($className, $label, $description, $group, $uri);
 
 	/**
 	 * @return string
@@ -36,6 +37,11 @@ interface ModuleConfigurationInterface {
 	 * @return string
 	 */
 	public function getDescription();
+
+	/**
+	 * @return string
+	 */
+	public function getUri();
 
 	/**
 	 * @param string $roleName
