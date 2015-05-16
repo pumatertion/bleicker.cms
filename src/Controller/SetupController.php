@@ -157,7 +157,7 @@ CONTENT;
 
 		$administratorRole = $entityManager->getRepository(Role::class)->matching($criteria)->first();
 
-		if(!$administratorRole){
+		if (!$administratorRole) {
 			$administratorRole = new Role('Administrator');
 		}
 
