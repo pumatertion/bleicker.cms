@@ -2,6 +2,8 @@
 
 namespace Bleicker\Cms\Controller;
 
+use Bleicker\Cms\Modules\ModuleInterface;
+use Bleicker\Cms\Modules\ModuleTrait;
 use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Utility\Arrays;
@@ -17,7 +19,9 @@ use Bleicker\ObjectManager\ObjectManager;
  *
  * @package Bleicker\Cms\Controller
  */
-class NodeController extends AbstractController {
+class NodeController extends AbstractController implements ModuleInterface {
+
+	use ModuleTrait;
 
 	/**
 	 * @var NodeServiceInterface
