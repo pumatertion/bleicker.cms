@@ -15,9 +15,7 @@ interface ModuleInterface {
 	 * @param string $label
 	 * @param string $description
 	 * @param string $group
-	 * @param array $allowedChildren
-	 * @param array $forbiddenChildren
-	 * @return void
+	 * @return ModuleConfigurationInterface
 	 */
-	public static function register($label, $description, $group, array $allowedChildren = [], array $forbiddenChildren = []);
+	public static function register($label, $description, $group);
 }
