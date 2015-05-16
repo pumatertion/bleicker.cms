@@ -66,16 +66,19 @@ class SetupToken extends AbstractSessionToken {
 	 * @return $this
 	 */
 	public function fetchAndSetAccount() {
-		$tokenPassword = file_get_contents(self::getTokenFilePath());
-		if (!Bcrypt::validate($this->credential->getValue(), $tokenPassword)) {
-			return $this;
+		if (file_exists(self::getTokenFilePath())) {
+			$tokenPassword = file_get_contents(self::getTokenFilePath());
+			if (!Bcrypt::validate($this->credential->getValue(), $tokenPassword)) {
+				return $this;
+			}
+			$role = new Role('Setup.Administrator');
+			$account = new Account('Setup-Admin');
+			$account->addRole($role);
+			$this->credential->setAccount($account);
+			$this->request->getParentRequest()->getSession()->start();
+			$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), TRUE);
 		}
-		$role = new Role('Setup.Administrator');
-		$account = new Account('Setup-Admin');
-		$account->addRole($role);
-		$this->credential->setAccount($account);
-		$this->request->getParentRequest()->getSession()->start();
-		$this->request->getParentRequest()->getSession()->set($this->getSessionKey(), TRUE);
+		return $this;
 	}
 
 	/**
