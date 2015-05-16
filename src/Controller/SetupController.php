@@ -14,7 +14,9 @@ use Bleicker\Framework\Security\Vote\Exception\ControllerInvokationExceptionInte
 use Bleicker\Nodes\NodeServiceInterface;
 use Bleicker\NodeTypes\Site;
 use Bleicker\ObjectManager\ObjectManager;
+use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Registry\Registry;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * Class SetupController
@@ -143,10 +145,26 @@ CONTENT;
 	 * @return string
 	 */
 	public function createAdministratorAction() {
+
+		/** @var EntityManagerInterface $entityManager */
+		$entityManager = ObjectManager::get(EntityManagerInterface::class);
+
+		$expr = Criteria::expr();
+		$criteria = Criteria::create();
+		$criteria->where(
+			$expr->eq('name', 'Administrator')
+		);
+
+		$administratorRole = $entityManager->getRepository(Role::class)->matching($criteria)->first();
+
+		if(!$administratorRole){
+			$administratorRole = new Role('Administrator');
+		}
+
 		$account = new Account();
 		$account
 			->setIdentity($this->request->getContent('username'))
-			->addRole(new Role('Administrator'));
+			->addRole($administratorRole);
 
 		$credentialValue = Bcrypt::encrypt($this->request->getContent('password'));
 		$credential = new Credential($credentialValue, $account);
