@@ -78,7 +78,8 @@ class SetupController extends AbstractController implements ModuleInterface {
 	 * @return string
 	 */
 	public function setupDatabaseAction() {
-		return $this->view->render();
+		$currentSettings = Registry::get('doctrine.db.default');
+		return $this->view->assign('current', $currentSettings)->render();
 	}
 
 	/**
