@@ -161,9 +161,12 @@ CONTENT;
 	 * @return void
 	 */
 	protected function createFirstSite() {
+		/** @var NodeServiceInterface $nodeService */
 		$nodeService = ObjectManager::get(NodeServiceInterface::class);
-		$site = new Site();
-		$site->setTitle('www.foo.com');
-		$nodeService->add($site);
+		if ($nodeService->findSites()->count() === 0) {
+			$site = new Site();
+			$site->setTitle('www.foo.com');
+			$nodeService->add($site);
+		}
 	}
 }
