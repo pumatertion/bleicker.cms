@@ -5,6 +5,8 @@ namespace Bleicker\Cms\Controller;
 use Bleicker\Account\Account;
 use Bleicker\Account\Credential;
 use Bleicker\Account\Role;
+use Bleicker\Cms\Modules\ModuleInterface;
+use Bleicker\Cms\Modules\ModuleTrait;
 use Bleicker\Cms\Security\SetupToken;
 use Bleicker\Encryption\Bcrypt;
 use Bleicker\Framework\Controller\AbstractController;
@@ -19,7 +21,9 @@ use Bleicker\Registry\Registry;
  *
  * @package Bleicker\Cms\Controller
  */
-class SetupController extends AbstractController {
+class SetupController extends AbstractController implements ModuleInterface {
+
+	use ModuleTrait;
 
 	/**
 	 * @var string
