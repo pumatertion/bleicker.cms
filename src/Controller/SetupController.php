@@ -52,7 +52,7 @@ class SetupController extends AbstractController implements ModuleInterface {
 	 */
 	public function createTokenAction() {
 		$password = $this->request->getContent('password');
-		file_put_contents($this->tokenFile, Bcrypt::encrypt($password));
+		file_put_contents($this->tokenFile, Bcrypt::encrypt(SetupToken::PASSWORD_PREFIX . $password));
 		$this->redirect('/setup/authentication');
 	}
 

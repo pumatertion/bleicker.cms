@@ -18,7 +18,7 @@ use Bleicker\Token\AbstractSessionToken;
  */
 class SetupToken extends AbstractSessionToken {
 
-	const PASSWORD = 'password', TOKEN_FILENAME = 'setup.token';
+	const PASSWORD = 'password', TOKEN_FILENAME = 'setup.token', PASSWORD_PREFIX = 'ae435d2a-fbb3-11e4-a322-1697f925ec7b_';
 
 	/**
 	 * @var HttpApplicationRequestInterface
@@ -59,7 +59,7 @@ class SetupToken extends AbstractSessionToken {
 	 * @return $this
 	 */
 	public function injectCredential() {
-		$this->getCredential()->setValue($this->request->getContent(self::PASSWORD));
+		$this->getCredential()->setValue(static::PASSWORD_PREFIX . $this->request->getContent(self::PASSWORD));
 	}
 
 	/**
