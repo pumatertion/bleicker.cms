@@ -107,6 +107,8 @@ class SetupTokenTest extends UnitTestCase {
 		Arrays::setValueByPath($_SERVER, 'REQUEST_METHOD', 'POST');
 		Arrays::setValueByPath($_POST, 'password', 'right');
 
+		$token = Bcrypt::encrypt('right');
+
 		$application = ApplicationFactory::http(
 			$this->applicationBefore(),
 			$this->applicationAfter()
