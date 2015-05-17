@@ -4,6 +4,7 @@ namespace Unit;
 
 use Bleicker\Authentication\AuthenticationManagerInterface;
 use Bleicker\Cms\Security\SetupToken;
+use Bleicker\Context\Context;
 use Bleicker\Converter\Converter;
 use Bleicker\Encryption\Bcrypt;
 use Bleicker\Framework\ApplicationFactory;
@@ -50,6 +51,7 @@ class SetupTokenTest extends UnitTestCase {
 		Votes::prune();
 		Converter::prune();
 		Tokens::prune();
+		Context::prune();
 	}
 
 	/**
