@@ -16,12 +16,10 @@ use Bleicker\Token\TokenInterface;
 class AuthenticationController extends AbstractController {
 
 	/**
-	 * @param string $originControllerName
-	 * @param string $originMethodName
 	 * @param ControllerInvokationExceptionInterface $invokedException
 	 * @return string
 	 */
-	public function indexAction($originControllerName = NULL, $originMethodName = NULL, ControllerInvokationExceptionInterface $invokedException = NULL) {
+	public function indexAction(ControllerInvokationExceptionInterface $invokedException = NULL) {
 		if ($invokedException !== NULL) {
 			$this->view->assign('interceptedUri', $this->request->getParentRequest()->getRequestUri());
 		}

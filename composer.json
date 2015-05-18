@@ -2,7 +2,7 @@
 	"name": "bleicker/cms",
 	"type": "library",
 	"require": {
-		"bleicker/framework": "1.12.*",
+		"bleicker/framework": "1.13.*",
 		"bleicker/nodes": "0.15.*",
 		"bleicker/encryption": "0.0.*",
 		"namelesscoder/fluid": "dev-master"

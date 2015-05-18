@@ -57,12 +57,10 @@ class SetupController extends AbstractController implements ModuleInterface {
 	}
 
 	/**
-	 * @param string $originControllerName
-	 * @param string $originMethodName
 	 * @param ControllerInvokationExceptionInterface $invokedException
 	 * @return string
 	 */
-	public function authenticationAction($originControllerName = NULL, $originMethodName = NULL, ControllerInvokationExceptionInterface $invokedException = NULL) {
+	public function authenticationAction(ControllerInvokationExceptionInterface $invokedException = NULL) {
 		if (file_exists($this->tokenFile)) {
 			return $this->view->render();
 		}
