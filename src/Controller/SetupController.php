@@ -130,7 +130,6 @@ CONTENT;
 	public function createSchemaAction() {
 		$tool = new \Doctrine\ORM\Tools\SchemaTool($this->entityManager);
 		$tool->updateSchema($this->entityManager->getMetadataFactory()->getAllMetadata());
-		$this->createFirstSite();
 		$this->redirect('/setup/admin');
 	}
 
@@ -173,18 +172,5 @@ CONTENT;
 		$this->entityManager->flush();
 
 		$this->redirect('/nodemanager');
-	}
-
-	/**
-	 * @return void
-	 */
-	protected function createFirstSite() {
-		/** @var NodeServiceInterface $nodeService */
-		$nodeService = ObjectManager::get(NodeServiceInterface::class);
-		if ((integer)$nodeService->findSites()->count() === 0) {
-			$site = new Site();
-			$site->setTitle('www.foo.com');
-			$nodeService->add($site);
-		}
 	}
 }
