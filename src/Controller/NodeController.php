@@ -4,6 +4,7 @@ namespace Bleicker\Cms\Controller;
 
 use Bleicker\Cms\Modules\ModuleInterface;
 use Bleicker\Cms\Modules\ModuleTrait;
+use Bleicker\Context\ContextInterface;
 use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Utility\Arrays;
@@ -37,6 +38,7 @@ class NodeController extends AbstractController implements ModuleInterface {
 		parent::__construct();
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 		$this->nodeTypeConfigurations = ObjectManager::get(NodeTypeConfigurationsInterface::class, NodeTypeConfigurations::class);
+		ObjectManager::get(ContextInterface::class)->add(NodeService::SHOW_HIDDEN_CONTEXT_KEY, TRUE);
 	}
 
 	/**
