@@ -107,6 +107,7 @@ class GridElementTypeConverter extends AbstractTypeConverter {
 		$node = $this->nodeService->get($nodeId);
 		$node->setColspan(Arrays::getValueByPath($source, 'colspan') === NULL ? : Arrays::getValueByPath($source, 'colspan'));
 		$node->setOffset(Arrays::getValueByPath($source, 'offset') === NULL ? : Arrays::getValueByPath($source, 'offset'));
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
 		return $node;
 	}
 

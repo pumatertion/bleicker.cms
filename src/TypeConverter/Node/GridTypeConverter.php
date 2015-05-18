@@ -96,6 +96,7 @@ class GridTypeConverter extends AbstractTypeConverter {
 		Arrays::unsetValueByPath($source, $this->getIdPath());
 		/** @var Grid $node */
 		$node = $this->nodeService->get($nodeId);
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
 		return $node;
 	}
 }

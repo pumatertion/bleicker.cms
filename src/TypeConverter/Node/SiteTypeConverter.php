@@ -106,6 +106,7 @@ class SiteTypeConverter extends AbstractTypeConverter {
 		$node = $this->nodeService->get($nodeId);
 
 		$node->setTitle(Arrays::getValueByPath($source, 'title') === NULL ? '' : Arrays::getValueByPath($source, 'title'));
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
 
 		return $node;
 	}

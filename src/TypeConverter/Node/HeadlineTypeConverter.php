@@ -109,6 +109,7 @@ class HeadlineTypeConverter extends AbstractTypeConverter {
 
 		$node->setTitle(Arrays::getValueByPath($source, 'title'));
 		$node->setSubtitle(Arrays::getValueByPath($source, 'subtitle'));
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
 
 		return $node;
 	}

@@ -106,7 +106,8 @@ class TextTypeConverter extends AbstractTypeConverter {
 		$node = $this->nodeService->get($nodeId);
 
 		$node->setBody(Arrays::getValueByPath($source, 'body'));
-
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
+		
 		return $node;
 	}
 

@@ -111,6 +111,7 @@ class ImageTypeConverter extends AbstractTypeConverter {
 
 		$node->setTitle(Arrays::getValueByPath($source, 'title'));
 		$node->setAlt(Arrays::getValueByPath($source, 'alt'));
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
 
 		$resource = Arrays::getValueByPath($source, 'resource');
 		if ($resource instanceof UploadedFile) {

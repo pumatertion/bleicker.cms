@@ -96,6 +96,7 @@ class SectionTypeConverter extends AbstractTypeConverter {
 		Arrays::unsetValueByPath($source, $this->getIdPath());
 		/** @var Section $node */
 		$node = $this->nodeService->get($nodeId);
+		$node->setHidden((boolean)Arrays::getValueByPath($source, 'hidden'));
 		return $node;
 	}
 }
