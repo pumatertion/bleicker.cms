@@ -75,9 +75,10 @@ class NodeController extends AbstractController implements ModuleInterface {
 		$reference = $this->nodeService->get($reference);
 		$mode = $this->request->getContent('mode');
 		$nodeType = $this->request->getContent('nodeType');
+		$source = $this->request->getContents();
 
 		/** @var NodeInterface $node */
-		$node = Converter::convert([], $this->nodeTypeConfigurations->get($nodeType)->getClassName());
+		$node = Converter::convert($source, $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 
 		switch ($mode) {
 			case 'into':
@@ -131,8 +132,9 @@ class NodeController extends AbstractController implements ModuleInterface {
 	 */
 	public function addAction() {
 		$nodeType = $this->request->getContent('nodeType');
+		$source = $this->request->getContents();
 		/** @var NodeInterface $node */
-		$node = Converter::convert($this->request->getContents(), $this->nodeTypeConfigurations->get($nodeType)->getClassName());
+		$node = Converter::convert($source, $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 		$this->nodeService->add($node);
 		$this->redirect('/nodemanager/' . $node->getId(), 303);
 	}
