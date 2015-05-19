@@ -8,6 +8,7 @@ use Bleicker\Context\ContextInterface;
 use Bleicker\Converter\Converter;
 use Bleicker\Framework\Controller\AbstractController;
 use Bleicker\Framework\Utility\Arrays;
+use Bleicker\Framework\Validation\Exception\ValidationException;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurations;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
 use Bleicker\Nodes\NodeInterface;
@@ -96,17 +97,23 @@ class NodeController extends AbstractController implements ModuleInterface {
 
 	/**
 	 * @param string $node
+	 * @throws ValidationException
 	 * @return void
 	 */
 	public function updateAction($node) {
-		$node = $this->nodeService->get($node);
-		$source = $this->request->getContents();
-		$source = array_merge($source, $this->request->getParentRequest()->files->all());
-		Arrays::setValueByPath($source, 'id', $node->getId());
-		/** @var NodeInterface $converted */
-		$converted = Converter::convert($source, $node->getNodeType());
-		$this->nodeService->update($converted);
-		$this->redirect('/nodemanager/' . $converted->getId());
+		try {
+			$node = $this->nodeService->get($node);
+			$source = $this->request->getContents();
+			$source = array_merge($source, $this->request->getParentRequest()->files->all());
+			Arrays::setValueByPath($source, 'id', $node->getId());
+			/** @var NodeInterface $converted */
+			$converted = Converter::convert($source, $node->getNodeType());
+			$this->nodeService->update($converted);
+			$this->redirect('/nodemanager/' . $converted->getId());
+		} catch (ValidationException $exception) {
+			$exception->setControllerName(static::class)->setMethodName('showAction')->setMethodArguments([func_get_arg(0)]);
+			throw $exception;
+		}
 	}
 
 	/**
