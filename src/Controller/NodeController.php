@@ -65,7 +65,7 @@ class NodeController extends AbstractController implements ModuleInterface {
 			$page = $this->nodeService->locateSite($node);
 		}
 		$sites = $this->nodeService->findSites();
-		return $this->view->assign('node', $node)->assign('page', $page)->assign('sites', $sites)->render();
+		return $this->view->assign('node', $node)->assign('page', $page)->assign('sites', $sites)->assign('validationException', $this->getValidationException())->render();
 	}
 
 	/**
