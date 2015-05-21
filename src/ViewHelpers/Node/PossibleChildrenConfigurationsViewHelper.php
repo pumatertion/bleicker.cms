@@ -1,6 +1,6 @@
 <?php
 
-namespace Bleicker\Cms\ViewHelpers;
+namespace Bleicker\Cms\ViewHelpers\Node;
 
 use Bleicker\Nodes\Configuration\NodeConfigurationInterface;
 use Bleicker\Nodes\Configuration\NodeTypeConfigurationsInterface;
@@ -13,7 +13,7 @@ use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class PossibleChildrenConfigurationsViewHelper
  *
- * @package Bleicker\Cms\ViewHelpers
+ * @package Bleicker\Cms\ViewHelpers\Node
  */
 class PossibleChildrenConfigurationsViewHelper extends AbstractViewHelper {
 
