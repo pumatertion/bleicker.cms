@@ -70,29 +70,35 @@ class NodeController extends AbstractController implements ModuleInterface {
 
 	/**
 	 * @param $reference
+	 * @throws ValidationException
 	 * @return void
 	 */
 	public function addWithReferenceAction($reference) {
-		$reference = $this->nodeService->get($reference);
-		$mode = $this->request->getContent('mode');
-		$nodeType = $this->request->getContent('nodeType');
-		$source = $this->request->getContents();
+		try {
+			$reference = $this->nodeService->get($reference);
+			$mode = $this->request->getContent('mode');
+			$nodeType = $this->request->getContent('nodeType');
+			$source = $this->request->getContents();
 
-		/** @var NodeInterface $node */
-		$node = Converter::convert($source, $this->nodeTypeConfigurations->get($nodeType)->getClassName());
+			/** @var NodeInterface $node */
+			$node = Converter::convert($source, $this->nodeTypeConfigurations->get($nodeType)->getClassName());
 
-		switch ($mode) {
-			case 'into':
-				$this->nodeService->addChild($node, $reference);
-				break;
-			case 'after':
-				$this->nodeService->addAfter($node, $reference);
-				break;
-			case 'before':
-				$this->nodeService->addBefore($node, $reference);
-				break;
+			switch ($mode) {
+				case 'into':
+					$this->nodeService->addChild($node, $reference);
+					break;
+				case 'after':
+					$this->nodeService->addAfter($node, $reference);
+					break;
+				case 'before':
+					$this->nodeService->addBefore($node, $reference);
+					break;
+			}
+			$this->redirect('/nodemanager/' . $node->getId());
+		} catch (ValidationException $exception) {
+			$exception->setControllerName(static::class)->setMethodName('showAction')->setMethodArguments(func_get_args());
+			throw $exception;
 		}
-		$this->redirect('/nodemanager/' . $node->getId());
 	}
 
 	/**
@@ -111,7 +117,7 @@ class NodeController extends AbstractController implements ModuleInterface {
 			$this->nodeService->update($converted);
 			$this->redirect('/nodemanager/' . $converted->getId());
 		} catch (ValidationException $exception) {
-			$exception->setControllerName(static::class)->setMethodName('showAction')->setMethodArguments([func_get_arg(0)]);
+			$exception->setControllerName(static::class)->setMethodName('showAction')->setMethodArguments(func_get_args());
 			throw $exception;
 		}
 	}
@@ -136,13 +142,19 @@ class NodeController extends AbstractController implements ModuleInterface {
 
 	/**
 	 * @return void
+	 * @throws ValidationException
 	 */
 	public function addAction() {
-		$nodeType = $this->request->getContent('nodeType');
-		$source = $this->request->getContents();
-		/** @var NodeInterface $node */
-		$node = Converter::convert($source, $this->nodeTypeConfigurations->get($nodeType)->getClassName());
-		$this->nodeService->add($node);
-		$this->redirect('/nodemanager/' . $node->getId(), 303);
+		try {
+			$nodeType = $this->request->getContent('nodeType');
+			$source = $this->request->getContents();
+			/** @var NodeInterface $node */
+			$node = Converter::convert($source, $this->nodeTypeConfigurations->get($nodeType)->getClassName());
+			$this->nodeService->add($node);
+			$this->redirect('/nodemanager/' . $node->getId(), 303);
+		} catch (ValidationException $exception) {
+			$exception->setControllerName(static::class)->setMethodName('indexAction')->setMethodArguments(func_get_args());
+			throw $exception;
+		}
 	}
 }
