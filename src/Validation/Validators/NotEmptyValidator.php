@@ -1,6 +1,6 @@
 <?php
 
-namespace Bleicker\Cms\Validation;
+namespace Bleicker\Cms\Validation\Validators;
 
 use Bleicker\Framework\Validation\AbstractValidator;
 use Bleicker\Framework\Validation\Message;
@@ -8,7 +8,7 @@ use Bleicker\Framework\Validation\Message;
 /**
  * Class NotEmptyValidator
  *
- * @package Bleicker\Distribution\Validation
+ * @package Bleicker\Distribution\Validation\Validators
  */
 class NotEmptyValidator extends AbstractValidator {
 
