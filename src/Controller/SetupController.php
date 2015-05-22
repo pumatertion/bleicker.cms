@@ -82,7 +82,7 @@ class SetupController extends AbstractController {
 	 * @todo validate url
 	 */
 	public function createDatabaseAction() {
-		$path = Registry::get('paths.root') . '/src/Configuration/Includes/Secrets.local.php';
+		$path = Registry::get('paths.root') . '/src/Configuration/Shared/Secrets.local.php';
 		$content = <<<CONTENT
 <?php
 
