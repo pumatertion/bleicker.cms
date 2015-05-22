@@ -94,7 +94,9 @@ class SetupTokenTest extends UnitTestCase {
 			$this->applicationAfter()
 		);
 
-		ObjectManager::get(RouterInterface::class)->addRoute('/failed', 'post', new ControllerRouteData(ExampleController::class, 'fooAction'));
+		/** @var RouterInterface $router */
+		$router = ObjectManager::get(RouterInterface::class);
+		$router->addRoute(ExampleController::class, 'fooAction', '/failed', 'post');
 
 		$application->run();
 	}
@@ -107,14 +109,14 @@ class SetupTokenTest extends UnitTestCase {
 		Arrays::setValueByPath($_SERVER, 'REQUEST_METHOD', 'POST');
 		Arrays::setValueByPath($_POST, 'password', 'right');
 
-		$token = Bcrypt::encrypt('right');
-
 		$application = ApplicationFactory::http(
 			$this->applicationBefore(),
 			$this->applicationAfter()
 		);
 
-		ObjectManager::get(RouterInterface::class)->addRoute('/success', 'post', new ControllerRouteData(ExampleController::class, 'fooAction'));
+		/** @var RouterInterface $router */
+		$router = ObjectManager::get(RouterInterface::class);
+		$router->addRoute(ExampleController::class, 'fooAction', '/success', 'post');
 
 		ob_start();
 		$application->run();
