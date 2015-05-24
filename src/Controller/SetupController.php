@@ -9,7 +9,6 @@ use Bleicker\Cms\Modules\ModuleTrait;
 use Bleicker\Cms\Security\SetupToken;
 use Bleicker\Encryption\Bcrypt;
 use Bleicker\Framework\Controller\AbstractController;
-use Bleicker\Framework\Security\Vote\Exception\ControllerInvocationExceptionInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Persistence\EntityManagerInterface;
 use Bleicker\Registry\Registry;
@@ -52,10 +51,9 @@ class SetupController extends AbstractController {
 	}
 
 	/**
-	 * @param ControllerInvocationExceptionInterface $invokedException
 	 * @return string
 	 */
-	public function authenticationAction(ControllerInvocationExceptionInterface $invokedException = NULL) {
+	public function authenticationAction() {
 		if (file_exists($this->tokenFile)) {
 			return $this->view->render();
 		}

@@ -4,7 +4,6 @@ namespace Bleicker\Cms\Controller;
 
 use Bleicker\Authentication\AuthenticationManagerInterface;
 use Bleicker\Framework\Controller\AbstractController;
-use Bleicker\Framework\Security\Vote\Exception\ControllerInvocationExceptionInterface;
 use Bleicker\ObjectManager\ObjectManager;
 use Bleicker\Token\TokenInterface;
 
@@ -16,14 +15,13 @@ use Bleicker\Token\TokenInterface;
 class AuthenticationController extends AbstractController {
 
 	/**
-	 * @param ControllerInvocationExceptionInterface $invokedException
 	 * @return string
 	 */
-	public function indexAction(ControllerInvocationExceptionInterface $invokedException = NULL) {
-		if ($invokedException !== NULL) {
+	public function indexAction() {
+		if ($this->getInvokingException() !== NULL) {
 			$this->view->assign('interceptedUri', $this->request->getParentRequest()->getRequestUri());
 		}
-		return $this->view->assign('exception', $invokedException)->render();
+		return $this->view->assign('exception', $this->getInvokingException())->render();
 	}
 
 	/**
@@ -45,7 +43,7 @@ class AuthenticationController extends AbstractController {
 		$authenticationManager = ObjectManager::get(AuthenticationManagerInterface::class);
 		$tokens = $authenticationManager->getTokens();
 		/** @var TokenInterface $token */
-		while($token = $tokens->current()){
+		while ($token = $tokens->current()) {
 			$authenticationManager->logout($token);
 			$tokens->next();
 		}
