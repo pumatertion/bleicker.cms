@@ -40,6 +40,7 @@ class NodeController extends AbstractController implements ModuleInterface {
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
 		$this->nodeTypeConfigurations = ObjectManager::get(NodeTypeConfigurationsInterface::class, NodeTypeConfigurations::class);
 		$this->context->remove(NodeService::SHOW_HIDDEN_CONTEXT_KEY)->add(NodeService::SHOW_HIDDEN_CONTEXT_KEY, TRUE);
+		$this->context->remove(NodeService::SHOW_HIDDEN_IF_AUTHENTICATED_CONTEXT_KEY)->add(NodeService::SHOW_HIDDEN_IF_AUTHENTICATED_CONTEXT_KEY, TRUE);
 	}
 
 	/**
