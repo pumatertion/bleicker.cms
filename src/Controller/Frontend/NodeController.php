@@ -25,6 +25,9 @@ class NodeController extends AbstractController {
 	public function __construct() {
 		parent::__construct();
 		$this->nodeService = ObjectManager::get(NodeServiceInterface::class, NodeService::class);
+		if($this->authenticationManager->getRoles()->count() === 0){
+			$this->context->remove(NodeService::SHOW_HIDDEN_IF_AUTHENTICATED_CONTEXT_KEY)->add(NodeService::SHOW_HIDDEN_IF_AUTHENTICATED_CONTEXT_KEY, TRUE);
+		}
 	}
 
 	/**
