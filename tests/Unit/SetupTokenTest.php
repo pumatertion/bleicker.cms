@@ -87,7 +87,7 @@ class SetupTokenTest extends UnitTestCase {
 	public function failedTest() {
 		Arrays::setValueByPath($_SERVER, 'PATH_INFO', '/failed');
 		Arrays::setValueByPath($_SERVER, 'REQUEST_METHOD', 'POST');
-		Arrays::setValueByPath($_POST, 'password', 'wrong');
+		Arrays::setValueByPath($_POST, SetupToken::PASSWORD_PATH, 'wrong');
 
 		$application = ApplicationFactory::http(
 			$this->applicationBefore(),
@@ -107,7 +107,7 @@ class SetupTokenTest extends UnitTestCase {
 	public function successTest() {
 		Arrays::setValueByPath($_SERVER, 'PATH_INFO', '/success');
 		Arrays::setValueByPath($_SERVER, 'REQUEST_METHOD', 'POST');
-		Arrays::setValueByPath($_POST, 'password', 'right');
+		Arrays::setValueByPath($_POST, SetupToken::PASSWORD_PATH, 'right');
 
 		$application = ApplicationFactory::http(
 			$this->applicationBefore(),

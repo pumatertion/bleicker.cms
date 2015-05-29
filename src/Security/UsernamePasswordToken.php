@@ -19,7 +19,7 @@ use Doctrine\DBAL\DBALException;
  */
 class UsernamePasswordToken extends AbstractSessionToken {
 
-	const USERNAME = 'username', PASSWORD = 'password';
+	const USERNAME_PATH = 'bleicker.cms.security.username_password_token.username', PASSWORD_PATH = 'bleicker.cms.security.username_password_token.password';
 
 	/**
 	 * @var HttpApplicationRequestInterface
@@ -66,7 +66,7 @@ class UsernamePasswordToken extends AbstractSessionToken {
 	 * @return $this
 	 */
 	public function injectCredential() {
-		$this->getCredential()->setValue($this->request->getContent(self::PASSWORD));
+		$this->getCredential()->setValue($this->request->getContent(self::PASSWORD_PATH));
 	}
 
 	/**
@@ -74,7 +74,7 @@ class UsernamePasswordToken extends AbstractSessionToken {
 	 */
 	public function fetchAndSetAccount() {
 		try {
-			$identity = $this->request->getContent(self::USERNAME);
+			$identity = $this->request->getContent(self::USERNAME_PATH);
 			$queryBuilder = $this->entityManager->createQueryBuilder();
 			$credentials = $queryBuilder->select('c')->from(Credential::class, 'c')->leftJoin('c.account', 'a')->where('a.identity = :identity')
 				->setParameter('identity', $identity)
